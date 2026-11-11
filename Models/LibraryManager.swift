@@ -30,6 +30,17 @@ final class LibraryManager: ObservableObject {
         FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     }
 
+    /// 确保 Documents 目录存在，并放一个说明文件——帮助该文件夹在"文件"App 里稳定出现。
+    func prepareDocuments() {
+        let dir = documentsURL
+        try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
+        let hint = dir.appendingPathComponent("把视频放这里.txt")
+        if !FileManager.default.fileExists(atPath: hint.path) {
+            let text = "把 .mp4 / .mov / .m4v 视频文件放进这个文件夹，然后回到 SlidePlay 点『刷新视频列表』。"
+            try? text.write(to: hint, atomically: true, encoding: .utf8)
+        }
+    }
+
     // MARK: - 持久化（外部文件夹书签）
 
     func load() {

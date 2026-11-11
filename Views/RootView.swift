@@ -51,6 +51,7 @@ struct RootView: View {
         .preferredColorScheme(.dark)
         .onAppear {
             manager.load()
+            manager.prepareDocuments()
             if manager.activeURL != nil {
                 manager.scan(into: store)
             } else {
