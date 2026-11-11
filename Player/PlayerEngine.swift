@@ -4,12 +4,14 @@ import MediaPlayer
 
 enum AspectMode: String, CaseIterable, Identifiable {
     case fit
+    case blurFill
     case fill
     case stretch
     var id: String { rawValue }
     var label: String {
         switch self {
         case .fit: return "适配"
+        case .blurFill: return "模糊填充"
         case .fill: return "填充"
         case .stretch: return "拉伸"
         }
@@ -17,6 +19,7 @@ enum AspectMode: String, CaseIterable, Identifiable {
     var videoGravity: AVLayerVideoGravity {
         switch self {
         case .fit: return .resizeAspect
+        case .blurFill: return .resizeAspect
         case .fill: return .resizeAspectFill
         case .stretch: return .resize
         }
