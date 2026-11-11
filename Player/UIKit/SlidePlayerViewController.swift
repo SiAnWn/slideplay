@@ -27,7 +27,7 @@ final class PlayerUIView: UIView {
 
 /// 单个视频页（UIKit）：AVPlayerLayer 播放 + UIKit 手势。
 /// 出现即播放、消失即暂停并保存进度；翻页由外层 UIPageViewController 负责。
-final class SlidePlayerViewController: UIViewController {
+final class SlidePlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     let index: Int
     let item: VideoItem
     private weak var engine: PlayerEngine?
@@ -167,6 +167,7 @@ final class SlidePlayerViewController: UIViewController {
 
         let pan = UIPanGestureRecognizer(target: self, action: #selector(onPan(_:)))
         pan.maximumNumberOfTouches = 1
+        pan.delegate = self
 
         view.addGestureRecognizer(single)
         view.addGestureRecognizer(double)
@@ -241,7 +242,7 @@ final class SlidePlayerViewController: UIViewController {
     }
 
     // 只让"横向为主"的拖动被本控制器的 pan 接管，竖向交给翻页
-    override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         if let pan = gestureRecognizer as? UIPanGestureRecognizer {
             let v = pan.velocity(in: view)
             return abs(v.x) > abs(v.y) * 1.2
