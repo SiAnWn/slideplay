@@ -19,6 +19,10 @@ struct VideoPageView: View {
     @State private var timeObs: Any?
     @State private var endNotif: NSObjectProtocol?
 
+    @State private var scrubbing = false
+    @State private var scrubStart: Double = 0
+    @State private var scrubTarget: Double = 0
+
     private var isCurrent: Bool { engine.current == index }
 
     var body: some View {
@@ -55,6 +59,39 @@ struct VideoPageView: View {
                     guard isCurrent else { return }
                     engine.drawerOpen = true
                 }
+
+            // 底部横滑 = 拖动进度：只认横向，且用 simultaneous，绝不挡上下翻页
+            GeometryReader { geo in
+                Color.clear
+                    .contentShape(Rectangle())
+                    .simultaneousGesture(
+                        DragGesture(minimumDistance: 12)
+                            .onChanged { v in
+                                guard isCurrent, let player else { return }
+                                guard abs(v.translation.width) > abs(v.translation.height) else { return }
+                                if !scrubbing {
+                                    scrubbing = true
+                                    scrubStart = CMTimeGetSeconds(player.currentTime())
+                                }
+                                let dur = CMTimeGetSeconds(player.currentItem?.duration ?? .zero)
+                                guard dur.isFinite, dur > 1 else { return }
+                                let span = dur * 0.25
+                                let frac = Double(v.translation.width / max(geo.size.width, 1))
+                                let delta = frac * span
+                                scrubTarget = max(0, min(dur, scrubStart + delta))
+                                engine.seeking = PlayerEngine.SeekInfo(item: scrubTarget, total: dur)
+                            }
+                            .onEnded { _ in
+                                guard scrubbing, let player else { scrubbing = false; engine.seeking = nil; return }
+                                player.seek(to: CMTime(seconds: scrubTarget, preferredTimescale: 600),
+                                           toleranceBefore: .zero, toleranceAfter: .zero)
+                                scrubbing = false
+                                engine.seeking = nil
+                            }
+                    )
+            }
+            .frame(height: 90)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
         }
         .clipped()
         .animation(.easeOut(duration: 0.2), value: ready)

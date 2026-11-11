@@ -34,6 +34,9 @@ struct RootView: View {
             hudOverlay
         }
         .overlay {
+            seekOverlay
+        }
+        .overlay {
             if engine.drawerOpen && !store.videos.isEmpty {
                 drawerOverlay
             }
@@ -124,6 +127,40 @@ struct RootView: View {
             .transition(.opacity)
             .allowsHitTesting(false)
         }
+    }
+
+    // MARK: - 拖动进度时的进度条
+
+    @ViewBuilder private var seekOverlay: some View {
+        if let s = engine.seeking {
+            VStack {
+                Spacer()
+                VStack(spacing: 8) {
+                    Text("\(timeText(s.item)) / \(timeText(s.total))")
+                        .font(.system(size: 16, weight: .semibold, design: .rounded))
+                        .foregroundStyle(.white)
+                    GeometryReader { g in
+                        ZStack(alignment: .leading) {
+                            Capsule().fill(.white.opacity(0.25))
+                            Capsule()
+                                .fill(Theme.accent)
+                                .frame(width: CGFloat(max(0, min(1, s.item / max(s.total, 1)))) * g.size.width)
+                        }
+                    }
+                    .frame(height: 6)
+                }
+                .padding(.horizontal, 28)
+                .padding(.bottom, 44)
+            }
+            .transition(.opacity)
+            .allowsHitTesting(false)
+        }
+    }
+
+    private func timeText(_ t: Double) -> String {
+        guard t.isFinite, t >= 0 else { return "0:00" }
+        let s = Int(t.rounded())
+        return String(format: "%d:%02d", s / 60, s % 60)
     }
 
     // MARK: - 已选文件夹但没有可识别视频

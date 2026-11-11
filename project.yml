@@ -30,7 +30,6 @@ targets:
         LSSupportsOpeningDocumentsInPlace: true
         NSFaceIDUsageDescription: 开启隐私锁后，从后台切回时需要用面容解锁，保护你的视频不被别人看到
         UILaunchScreen: {}
-        UIRequiresFullScreen: true
         UIBackgroundModes:
           - audio
         UISupportedInterfaceOrientations:
