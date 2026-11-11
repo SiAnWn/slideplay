@@ -3,7 +3,7 @@ import AVFoundation
 import Combine
 import MediaPlayer
 
-/// 用 MPVolumeView 的内部 slider 来设置系统音量（AVAudioSession 的 outputVolume 只读）。
+/// 用 MPVolumeView 的内部 slider 设置系统音量（outputVolume 只读）。
 enum VolumeControl {
     static let slider: UISlider? = {
         let mv = MPVolumeView(frame: CGRect(x: -200, y: -200, width: 120, height: 40))
@@ -19,14 +19,8 @@ enum VolumeControl {
     static var current: Float { AVAudioSession.sharedInstance().outputVolume }
 }
 
-/// 承载 AVPlayerLayer 的视图。
-final class PlayerUIView: UIView {
-    override static var layerClass: AnyClass { AVPlayerLayer.self }
-    var playerLayer: AVPlayerLayer { layer as! AVPlayerLayer }
-}
-
-/// 单个视频页（UIKit）：AVPlayerLayer 播放 + UIKit 手势。
-/// 出现即播放、消失即暂停并保存进度；翻页由外层 UIPageViewController 负责。
+/// 单个视频页（UIKit）：用 AVPlayerViewController 渲染（关闭系统控件），
+/// 上层盖一个透明视图承接手势。出现即播放、消失即暂停并保存进度。
 final class SlidePlayerViewController: UIViewController, UIGestureRecognizerDelegate {
     let index: Int
     let item: VideoItem
@@ -34,13 +28,12 @@ final class SlidePlayerViewController: UIViewController, UIGestureRecognizerDele
     private weak var store: LibraryStore?
 
     private let player = AVPlayer()
+    private var playerVC: AVPlayerViewController?
     private var playerItem: AVPlayerItem?
     private var timeObs: Any?
     private var observingStatus = false
     private var cancellables = Set<AnyCancellable>()
     private var panBase: (brightness: Double, volume: Double)?
-
-    private var playerView: PlayerUIView? { view as? PlayerUIView }
 
     init(index: Int, item: VideoItem, engine: PlayerEngine, store: LibraryStore) {
         self.index = index
@@ -51,28 +44,31 @@ final class SlidePlayerViewController: UIViewController, UIGestureRecognizerDele
     }
     required init?(coder: NSCoder) { fatalError("init(coder:) not used") }
 
-    override func loadView() {
-        let v = PlayerUIView(frame: UIScreen.main.bounds)
-        v.backgroundColor = .black
-        v.playerLayer.videoGravity = .resizeAspect
-        view = v
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .black
         setupPlayer()
-        setupGestures()
+        setupGestureOverlay()
         observeEngine()
     }
 
-    // MARK: 播放器
+    // MARK: 播放器（AVPlayerViewController 渲染）
 
     private func setupPlayer() {
         let pi = AVPlayerItem(url: item.url)
         playerItem = pi
         player.automaticallyWaitsToMinimizeStalling = false
-        playerView?.playerLayer.player = player
-        applyAspect()
+
+        let pvc = AVPlayerViewController()
+        pvc.showsPlaybackControls = false
+        pvc.videoGravity = (engine?.aspect ?? .fit).videoGravity
+        pvc.player = player
+        addChild(pvc)
+        pvc.view.frame = view.bounds
+        pvc.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(pvc.view)
+        pvc.didMove(toParent: self)
+        playerVC = pvc
 
         pi.addObserver(self, forKeyPath: "status", options: [.initial, .new], context: nil)
         observingStatus = true
@@ -136,7 +132,7 @@ final class SlidePlayerViewController: UIViewController, UIGestureRecognizerDele
     // MARK: 画面比例 / 倍速（跟随引擎实时变化）
 
     private func applyAspect() {
-        playerView?.playerLayer.videoGravity = (engine?.aspect ?? .fit).videoGravity
+        playerVC?.videoGravity = (engine?.aspect ?? .fit).videoGravity
     }
 
     private func observeEngine() {
@@ -154,13 +150,18 @@ final class SlidePlayerViewController: UIViewController, UIGestureRecognizerDele
             .store(in: &cancellables)
     }
 
-    // MARK: 手势
+    // MARK: 手势（盖在播放器视图之上的透明层）
 
-    private func setupGestures() {
+    private func setupGestureOverlay() {
+        let overlay = UIView(frame: view.bounds)
+        overlay.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        overlay.backgroundColor = .clear
+        view.addSubview(overlay)
+
         let single = UITapGestureRecognizer(target: self, action: #selector(onTap))
         let double = UITapGestureRecognizer(target: self, action: #selector(onDoubleTap(_:)))
         double.numberOfTapsRequired = 2
-        single.require(toFail: double)          // 先让双击判定，失败才算单击
+        single.require(toFail: double)
 
         let lp = UILongPressGestureRecognizer(target: self, action: #selector(onLongPress(_:)))
         lp.minimumPressDuration = 0.35
@@ -169,10 +170,10 @@ final class SlidePlayerViewController: UIViewController, UIGestureRecognizerDele
         pan.maximumNumberOfTouches = 1
         pan.delegate = self
 
-        view.addGestureRecognizer(single)
-        view.addGestureRecognizer(double)
-        view.addGestureRecognizer(lp)
-        view.addGestureRecognizer(pan)
+        overlay.addGestureRecognizer(single)
+        overlay.addGestureRecognizer(double)
+        overlay.addGestureRecognizer(lp)
+        overlay.addGestureRecognizer(pan)
     }
 
     @objc private func onTap() {
@@ -229,8 +230,8 @@ final class SlidePlayerViewController: UIViewController, UIGestureRecognizerDele
                 UIScreen.main.brightness = CGFloat(v)
                 engine.showHUD(icon: "sun.max.fill", text: "\(Int(v * 100))%")
             } else {
-                let v = min(1, max(0, base.volume + Double(Float(frac))))
-                VolumeControl.set(Float(v))
+                let v = min(1, max(0, base.volume + Float(frac)))
+                VolumeControl.set(v)
                 engine.showHUD(icon: v <= 0 ? "speaker.slash.fill" : "speaker.wave.2.fill",
                                text: "\(Int(v * 100))%")
             }
@@ -241,7 +242,7 @@ final class SlidePlayerViewController: UIViewController, UIGestureRecognizerDele
         }
     }
 
-    // 只让"横向为主"的拖动被本控制器的 pan 接管，竖向交给翻页
+    // 只让"横向为主"的拖动被本控制器的 pan 接管，竖向留给翻页
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         if let pan = gestureRecognizer as? UIPanGestureRecognizer {
             let v = pan.velocity(in: view)
