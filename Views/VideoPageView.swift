@@ -136,6 +136,10 @@ struct VideoPageView: View {
 
     private func observe(_ avItem: AVPlayerItem, player p: AVPlayer) {
         let title = item.title
+        let store = self.store
+        let engine = self.engine
+        let stableID = item.stableID
+        let idx = index
 
         statusObs = p.observe(\.status, options: [.initial, .new]) { pl, _ in
             Task { @MainActor in
@@ -154,11 +158,6 @@ struct VideoPageView: View {
                 }
             }
         }
-
-        let store = self.store
-        let engine = self.engine
-        let stableID = item.stableID
-        let idx = index
 
         timeObs = p.addPeriodicTimeObserver(forInterval: CMTime(seconds: 0.5, preferredTimescale: 600),
                                             queue: .main) { t in
