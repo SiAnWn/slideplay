@@ -29,6 +29,9 @@ struct RootView: View {
             }
         }
         .overlay {
+            hudOverlay
+        }
+        .overlay {
             if engine.drawerOpen && !store.videos.isEmpty {
                 drawerOverlay
             }
@@ -95,6 +98,29 @@ struct RootView: View {
             Button("好", role: .cancel) {}
         } message: {
             Text(pickError ?? "")
+        }
+    }
+
+    // MARK: - HUD（亮度/音量/倍速/跳转的临时提示）
+
+    @ViewBuilder private var hudOverlay: some View {
+        if let hud = engine.hud {
+            VStack {
+                Spacer()
+                HStack(spacing: 8) {
+                    Image(systemName: hud.icon)
+                    Text(hud.text)
+                }
+                .font(.system(size: 15, weight: .medium))
+                .foregroundStyle(.white)
+                .padding(.horizontal, 16)
+                .padding(.vertical, 10)
+                .background(.black.opacity(0.55), in: Capsule())
+                .padding(.bottom, 130)
+                Spacer()
+            }
+            .transition(.opacity)
+            .allowsHitTesting(false)
         }
     }
 
