@@ -1,52 +1,41 @@
 import SwiftUI
-import UIKit
 
-/// 普通宿主控制器：把 UIPageViewController 作为子控制器嵌入。
-/// （直接把容器型控制器交给 UIViewControllerRepresentable 常常显示空白，包一层最稳。）
-final class PagerHostViewController: UIViewController {
-    let pager = PagerViewController()
-    weak var engine: PlayerEngine?
-    weak var store: LibraryStore?
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .black
-        addChild(pager)
-        pager.view.frame = view.bounds
-        pager.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        view.addSubview(pager.view)
-        pager.didMove(toParent: self)
-
-        if let engine, let store {
-            pager.configure(engine: engine, store: store)
-            pager.show(index: engine.current)
-        }
-    }
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        pager.view.frame = view.bounds
-    }
-}
-
-/// 把 UIKit 竖向翻页容器包进 SwiftUI；当前页与 engine.current 双向同步。
-struct PagerView: UIViewControllerRepresentable {
-    @EnvironmentObject private var engine: PlayerEngine
+/// 竖向翻页：SwiftUI ScrollView + 分页行为。
+/// 每页一个 VideoPageView；当前页由 engine.current 双向同步。
+/// 注意：页内手势只用"点击/长按"这类不消费拖拽的手势，避免挡住上下滑。
+struct PagerView: View {
     @EnvironmentObject private var store: LibraryStore
+    @EnvironmentObject private var engine: PlayerEngine
 
-    func makeUIViewController(context: Context) -> PagerHostViewController {
-        let host = PagerHostViewController()
-        host.engine = engine
-        host.store = store
-        return host
-    }
+    var body: some View {
+        let playlist = store.playlist
+        ZStack {
+            Color.black
 
-    func updateUIViewController(_ host: PagerHostViewController, context: Context) {
-        host.engine = engine
-        host.store = store
-        host.pager.configure(engine: engine, store: store)
-        if host.pager.currentIndex != engine.current {
-            host.pager.show(index: engine.current)
+            if playlist.count > 0 {
+                ScrollView {
+                    LazyVStack(spacing: 0) {
+                        ForEach(0..<playlist.count, id: \.self) { i in
+                            if let item = playlist.item(at: i) {
+                                VideoPageView(index: i, item: item)
+                                    .id(i)
+                                    .containerRelativeFrame([.horizontal, .vertical])
+                            }
+                        }
+                    }
+                    .scrollTargetLayout()
+                }
+                .scrollIndicators(.hidden)
+                .scrollTargetBehavior(.paging)
+                .scrollPosition(id: Binding<Int?>(
+                    get: { engine.current },
+                    set: { if let v = $0 { engine.setCurrent(v) } }
+                ))
+            } else {
+                Text("当前片单为空")
+                    .foregroundStyle(.white.opacity(0.7))
+            }
         }
+        .ignoresSafeArea()
     }
 }

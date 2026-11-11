@@ -11,6 +11,8 @@ struct DrawerView: View {
     @EnvironmentObject private var privacy: PrivacyManager
 
     @State private var query = ""
+    @State private var volume: Double = 0.5
+    @State private var brightness: Double = 0.5
 
     private let speeds: [Float] = [0.5, 0.75, 1.0, 1.25, 1.5, 2.0, 3.0]
 
@@ -92,6 +94,26 @@ struct DrawerView: View {
                         Text(m.label).tag(m)
                     }
                 }
+            }
+
+            Section("音量与亮度") {
+                HStack(spacing: 10) {
+                    Image(systemName: "speaker.fill")
+                        .foregroundStyle(.secondary)
+                    Slider(value: $volume, in: 0...1)
+                    Image(systemName: "speaker.wave.3.fill")
+                        .foregroundStyle(.secondary)
+                }
+                .onChange(of: volume) { _, v in SystemControl.volume = v }
+
+                HStack(spacing: 10) {
+                    Image(systemName: "sun.min.fill")
+                        .foregroundStyle(.secondary)
+                    Slider(value: $brightness, in: 0...1)
+                    Image(systemName: "sun.max.fill")
+                        .foregroundStyle(.secondary)
+                }
+                .onChange(of: brightness) { _, v in SystemControl.brightness = v }
             }
 
             Section("排序") {
@@ -215,6 +237,10 @@ struct DrawerView: View {
                     .font(.footnote)
                     .foregroundStyle(.secondary)
             }
+        }
+        .onAppear {
+            volume = SystemControl.volume
+            brightness = SystemControl.brightness
         }
         .navigationTitle("菜单")
         .navigationBarTitleDisplayMode(.inline)
