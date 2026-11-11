@@ -77,7 +77,7 @@ struct PageGestureLayer: View {
     private func doubleSeek(_ seconds: Double) -> some Gesture {
         TapGesture(count: 2)
             .onEnded { seek(by: seconds) }
-            .simultaneously(before: TapGesture(count: 1).onEnded {
+            .simultaneously(with: TapGesture(count: 1).onEnded {
                 guard active else { return }
                 engine.isPlaying.toggle()
             })

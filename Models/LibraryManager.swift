@@ -118,7 +118,7 @@ final class LibraryManager: ObservableObject {
         for url in urls where VideoItem.isPlayable(url) {
             guard let values = try? url.resourceValues(forKeys: Set(keys)),
                   values.isRegularFile == true else { continue }
-            let stable = values.fileResourceIdentifier?.id ?? url.path
+            let stable = url.path
             guard !seen.contains(stable) else { continue }
             seen.insert(stable)
             items.append(VideoItem(url: url,

@@ -94,30 +94,23 @@ final class PlayerEngine: ObservableObject {
         center.changePlaybackRateCommand.isEnabled = true
         center.changePlaybackRateCommand.supportedPlaybackRates = [0.5, 0.75, 1.0, 1.25, 1.5, 2.0, 3.0]
 
-        center.addDefaultCommandHandler { [weak self] command, event in
-            guard let self else { return (.failed, nil) }
-            switch command {
-            case center.playCommand:
-                self.isPlaying = true
-            case center.pauseCommand:
-                self.isPlaying = false
-            case center.togglePlayPauseCommand:
-                self.isPlaying.toggle()
-            case center.nextTrackCommand:
-                self.next()
-            case center.previousTrackCommand:
-                self.previous()
-            case center.skipForwardCommand:
-                self.seekByRemote(15)
-            case center.skipBackwardCommand:
-                self.seekByRemote(-15)
-            case center.changePlaybackRateCommand:
-                if let e = event as? MPChangePlaybackRateCommandEvent { self.rate = e.playbackRate }
-            default:
-                return (.failed, nil)
-            }
-            return (.success, nil)
-        }
+        _ = center.playCommand.addActionHandler { [weak self] _ in
+            self?.isPlaying = true; return .success }
+        _ = center.pauseCommand.addActionHandler { [weak self] _ in
+            self?.isPlaying = false; return .success }
+        _ = center.togglePlayPauseCommand.addActionHandler { [weak self] _ in
+            self?.isPlaying.toggle(); return .success }
+        _ = center.nextTrackCommand.addActionHandler { [weak self] _ in
+            self?.next(); return .success }
+        _ = center.previousTrackCommand.addActionHandler { [weak self] _ in
+            self?.previous(); return .success }
+        _ = center.skipForwardCommand.addActionHandler { [weak self] _ in
+            self?.seekByRemote(15); return .success }
+        _ = center.skipBackwardCommand.addActionHandler { [weak self] _ in
+            self?.seekByRemote(-15); return .success }
+        _ = center.changePlaybackRateCommand.addActionHandler { [weak self] event in
+            if let e = event as? MPChangePlaybackRateCommandEvent { self?.rate = e.playbackRate }
+            return .success }
     }
 
     /// 锁屏快进/快退：广播给当前页的播放器执行。
