@@ -1,0 +1,154 @@
+import SwiftUI
+
+/// 一个被记住的文件夹：安全书签可跨启动恢复访问权。
+struct FolderEntry: Identifiable, Codable, Hashable {
+    let id: UUID
+    var name: String
+    var bookmark: Data
+}
+
+/// 管理多个文件夹书签：添加、切换、移除、扫描当前激活的文件夹。
+final class LibraryManager: ObservableObject {
+    @Published var folders: [FolderEntry] = []
+    @Published var activeFolderID: UUID?
+    @Published var lastError: String?
+
+    private(set) var activeURL: URL?
+    private var accessedURL: URL?
+
+    private let foldersKey = "folderEntries"
+    private let activeKey = "activeFolderID"
+
+    var activeFolderName: String? {
+        folders.first { $0.id == activeFolderID }?.name
+    }
+
+    // MARK: - 持久化
+
+    func load() {
+        if let data = UserDefaults.standard.data(forKey: foldersKey),
+           let list = try? JSONDecoder().decode([FolderEntry].self, from: data) {
+            folders = list
+        }
+        if let raw = UserDefaults.standard.string(forKey: activeKey),
+           let id = UUID(uuidString: raw),
+           folders.contains(where: { $0.id == id }) {
+            _ = activate(id: id)
+        }
+    }
+
+    private func persist() {
+        if let data = try? JSONEncoder().encode(folders) {
+            UserDefaults.standard.set(data, forKey: foldersKey)
+        }
+        UserDefaults.standard.set(activeFolderID?.uuidString, forKey: activeKey)
+    }
+
+    // MARK: - 文件夹管理
+
+    func addFolder(url: URL) {
+        let accessing = url.startAccessingSecurityScopedResource()
+        defer { if accessing { url.stopAccessingSecurityScopedResource() } }
+        do {
+            let bookmark = try url.bookmarkData(options: .withSecurityScope,
+                                                includingResourceValuesForKeys: nil,
+                                                relativeTo: nil)
+            let entry = FolderEntry(id: UUID(), name: url.lastPathComponent, bookmark: bookmark)
+            folders.append(entry)
+            persist()
+            _ = activate(id: entry.id)
+        } catch {
+            lastError = "无法记住文件夹：\(error.localizedDescription)"
+        }
+    }
+
+    @discardableResult
+    func activate(id: UUID) -> Bool {
+        guard let entry = folders.first(where: { $0.id == id }) else { return false }
+        var stale = false
+        guard let url = try? URL(resolvingBookmarkData: entry.bookmark,
+                                 options: .withSecurityScope,
+                                 relativeTo: nil,
+                                 bookmarkDataIsStale: &stale) else {
+            lastError = "无法打开文件夹：\(entry.name)"
+            return false
+        }
+        guard url.startAccessingSecurityScopedResource() else {
+            lastError = "没有访问权限：\(entry.name)"
+            return false
+        }
+        stopAccess()
+        accessedURL = url
+        activeURL = url
+        activeFolderID = id
+        if stale,
+           let fresh = try? url.bookmarkData(options: .withSecurityScope,
+                                             includingResourceValuesForKeys: nil,
+                                             relativeTo: nil) {
+            if let i = folders.firstIndex(where: { $0.id == id }) {
+                folders[i].bookmark = fresh
+            }
+        }
+        persist()
+        return true
+    }
+
+    func removeFolder(id: UUID) {
+        folders.removeAll { $0.id == id }
+        if activeFolderID == id {
+            activeFolderID = folders.first?.id
+            if let next = activeFolderID {
+                _ = activate(id: next)
+            } else {
+                stopAccess()
+                activeURL = nil
+            }
+        }
+        persist()
+    }
+
+    private func stopAccess() {
+        accessedURL?.stopAccessingSecurityScopedResource()
+        accessedURL = nil
+    }
+
+    // MARK: - 扫描
+
+    /// 扫描当前激活文件夹内的可播放视频（mp4/mov/m4v），写入 store。
+    func scan(into store: LibraryStore) {
+        guard let folder = activeURL else { return }
+        let accessing = folder.startAccessingSecurityScopedResource()
+        defer { if accessing { folder.stopAccessingSecurityScopedResource() } }
+
+        let keys: [URLResourceKey] = [.fileResourceIdentifierKey,
+                                      .fileModificationDateKey,
+                                      .fileSizeKey,
+                                      .isRegularFileKey]
+        let urls = (try? FileManager.default.contentsOfDirectory(
+            at: folder,
+            includingPropertiesForKeys: keys,
+            options: [.skipsHiddenFiles])) ?? []
+
+        var items: [VideoItem] = []
+        var seen = Set<String>()
+        for url in urls where VideoItem.isPlayable(url) {
+            guard let values = try? url.resourceValues(forKeys: Set(keys)),
+                  values.isRegularFile == true else { continue }
+            let stable: String
+            if let id = values.fileResourceIdentifier {
+                stable = id.withUnsafeBytes { Data($0).map { String(format: "%02x", $0) } }.joined()
+            } else {
+                stable = url.path
+            }
+            guard !seen.contains(stable) else { continue }
+            seen.insert(stable)
+            items.append(VideoItem(url: url,
+                                   stableID: stable,
+                                   title: url.deletingPathExtension().lastPathComponent,
+                                   modDate: values.fileModificationDate ?? .distantPast,
+                                   fileSize: Int64(values.fileSize ?? 0)))
+        }
+
+        store.videos = items
+    }
+}

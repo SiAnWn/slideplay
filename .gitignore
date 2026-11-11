@@ -1,0 +1,9 @@
+# Xcode 工程由 XcodeGen 生成，不入库
+SlidePlay.xcodeproj/
+build/
+DerivedData/
+*.ipa
+*.xcarchive
+
+# macOS
+.DS_Store
