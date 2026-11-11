@@ -55,6 +55,7 @@ final class PlayerEngine: ObservableObject {
     private(set) weak var store: LibraryStore?
     private var sleepTask: Task<Void, Never>?
     private var hudTask: Task<Void, Never>?
+    private var nowPlaying: NowPlayingController?
 
     struct SeekInfo: Equatable {
         let item: Double
@@ -73,48 +74,15 @@ final class PlayerEngine: ObservableObject {
 
     func configure(store: LibraryStore) {
         self.store = store
-        setupRemoteCommands()
+        let controller = NowPlayingController(engine: self)
+        controller.start()
+        self.nowPlaying = controller
     }
 
     var effectiveRate: Float { tempRate ?? rate }
 
-    // MARK: - 锁屏 / 控制中心（iOS 用 addDefaultCommandHandler，而非 macOS 的 .handler）
-
-    private func setupRemoteCommands() {
-        let center = MPRemoteCommandCenter.shared()
-        center.playCommand.isEnabled = true
-        center.pauseCommand.isEnabled = true
-        center.togglePlayPauseCommand.isEnabled = true
-        center.nextTrackCommand.isEnabled = true
-        center.previousTrackCommand.isEnabled = true
-        center.skipForwardCommand.isEnabled = true
-        center.skipForwardCommand.preferredIntervals = [15]
-        center.skipBackwardCommand.isEnabled = true
-        center.skipBackwardCommand.preferredIntervals = [15]
-        center.changePlaybackRateCommand.isEnabled = true
-        center.changePlaybackRateCommand.supportedPlaybackRates = [0.5, 0.75, 1.0, 1.25, 1.5, 2.0, 3.0]
-
-        _ = center.playCommand.addActionHandler { [weak self] _ in
-            self?.isPlaying = true; return .success }
-        _ = center.pauseCommand.addActionHandler { [weak self] _ in
-            self?.isPlaying = false; return .success }
-        _ = center.togglePlayPauseCommand.addActionHandler { [weak self] _ in
-            self?.isPlaying.toggle(); return .success }
-        _ = center.nextTrackCommand.addActionHandler { [weak self] _ in
-            self?.next(); return .success }
-        _ = center.previousTrackCommand.addActionHandler { [weak self] _ in
-            self?.previous(); return .success }
-        _ = center.skipForwardCommand.addActionHandler { [weak self] _ in
-            self?.seekByRemote(15); return .success }
-        _ = center.skipBackwardCommand.addActionHandler { [weak self] _ in
-            self?.seekByRemote(-15); return .success }
-        _ = center.changePlaybackRateCommand.addActionHandler { [weak self] event in
-            if let e = event as? MPChangePlaybackRateCommandEvent { self?.rate = e.playbackRate }
-            return .success }
-    }
-
     /// 锁屏快进/快退：广播给当前页的播放器执行。
-    private func seekByRemote(_ seconds: Double) {
+    func seekByRemote(_ seconds: Double) {
         remoteSeek = RemoteSeek(nonce: Date().timeIntervalSince1970, seconds: seconds)
     }
 
