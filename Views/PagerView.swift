@@ -44,7 +44,6 @@ struct PagerView: UIViewControllerRepresentable {
     func updateUIViewController(_ host: PagerHostViewController, context: Context) {
         host.engine = engine
         host.store = store
-        guard let engine, let store else { return }
         host.pager.configure(engine: engine, store: store)
         if host.pager.currentIndex != engine.current {
             host.pager.show(index: engine.current)
