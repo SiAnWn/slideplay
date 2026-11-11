@@ -1,15 +1,16 @@
 import SwiftUI
 import UniformTypeIdentifiers
 
-/// 一个被记住的文件夹。
+/// 一个被记住的外部文件夹（通过选取器授权）。
 struct FolderEntry: Identifiable, Codable, Hashable {
     let id: UUID
     var name: String
     var bookmark: Data
 }
 
-/// 管理多个文件夹书签：添加、切换、移除、扫描当前激活的文件夹。
-/// 注意：读取选取器授权的文件夹前，必须调用 startAccessingSecurityScopedResource()。
+/// 管理视频来源：
+/// 1) App 自己的 Documents 目录（主路径，无需安全权限，最可靠；配合文件共享可在"文件"App 里放视频）
+/// 2) 通过选取器授权的外部文件夹（备选）
 final class LibraryManager: ObservableObject {
     @Published var folders: [FolderEntry] = []
     @Published var activeFolderID: UUID?
@@ -24,7 +25,12 @@ final class LibraryManager: ObservableObject {
         folders.first { $0.id == activeFolderID }?.name
     }
 
-    // MARK: - 持久化
+    /// App 自己的 Documents 目录（开启文件共享后，在"文件"App 里可见）。
+    var documentsURL: URL {
+        FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+    }
+
+    // MARK: - 持久化（外部文件夹书签）
 
     func load() {
         if let data = UserDefaults.standard.data(forKey: foldersKey),
@@ -45,10 +51,9 @@ final class LibraryManager: ObservableObject {
         UserDefaults.standard.set(activeFolderID?.uuidString, forKey: activeKey)
     }
 
-    // MARK: - 文件夹管理
+    // MARK: - 外部文件夹管理
 
     func addFolder(url: URL) {
-        // 激活选取器授予的访问权
         let granted = url.startAccessingSecurityScopedResource()
         do {
             let bookmark = try url.bookmarkData(options: [],
@@ -106,13 +111,21 @@ final class LibraryManager: ObservableObject {
 
     // MARK: - 扫描
 
-    /// 扫描当前激活文件夹内的可播放视频。
-    /// 先获取安全访问权；判定可播放优先用文件真实内容类型（UTType），扩展名兜底。
+    /// 扫描 App 自己的 Documents 目录（主路径）。
+    func scanDocuments(into store: LibraryStore) {
+        scanFolder(documentsURL, into: store)
+    }
+
+    /// 扫描当前激活的外部文件夹（需先获取安全访问权）。
     func scan(into store: LibraryStore) {
         guard let folder = activeURL else { return }
         let started = folder.startAccessingSecurityScopedResource()
         defer { if started { folder.stopAccessingSecurityScopedResource() } }
+        scanFolder(folder, into: store)
+    }
 
+    /// 共用扫描逻辑：可播放判定优先用文件真实内容类型（UTType），扩展名兜底。
+    private func scanFolder(_ folder: URL, into store: LibraryStore) {
         let keys: [URLResourceKey] = [.contentModificationDateKey,
                                       .fileSizeKey,
                                       .isRegularFileKey,

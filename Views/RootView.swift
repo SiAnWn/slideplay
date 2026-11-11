@@ -21,7 +21,8 @@ struct RootView: View {
                 if manager.activeFolderName != nil {
                     emptyFolderView
                 } else {
-                    WelcomeView(onPick: { showPicker = true })
+                    WelcomeView(onRefresh: { manager.scanDocuments(into: store) },
+                                onPick: { showPicker = true })
                 }
             } else {
                 PagerView()
@@ -52,12 +53,18 @@ struct RootView: View {
             manager.load()
             if manager.activeURL != nil {
                 manager.scan(into: store)
+            } else {
+                manager.scanDocuments(into: store)
             }
         }
         .onChange(of: scenePhase) { _, phase in
             privacy.handlePhase(phase)
-            if phase == .active, manager.activeURL != nil {
-                manager.scan(into: store)
+            if phase == .active {
+                if manager.activeURL != nil {
+                    manager.scan(into: store)
+                } else {
+                    manager.scanDocuments(into: store)
+                }
             }
         }
         .onChange(of: privacy.isLocked) { _, locked in
