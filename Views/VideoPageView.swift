@@ -47,17 +47,10 @@ struct VideoPageView: View {
             }
 
             if let player {
-                if engine.aspect == .blurFill {
-                    // 背景：同一播放器放大填满 + 模糊，填掉上下黑边（实时跟随播放）
-                    AVPlayerSurfaceView(player: player, gravity: .resizeAspectFill, blur: true)
-                        .opacity(ready ? 1 : 0)
-                    // 前景：完整适配，不裁切、不变形
-                    AVPlayerSurfaceView(player: player, gravity: .resizeAspect)
-                        .opacity(ready ? 1 : 0)
-                } else {
-                    AVPlayerSurfaceView(player: player, gravity: engine.aspect.videoGravity)
-                        .opacity(ready ? 1 : 0)
-                }
+                // 单一渲染层。模糊填充的前景用「适配」(resizeAspect) 保证不裁切、不变形；
+                // 上下黑边由前面那层模糊背景填掉。
+                AVPlayerSurfaceView(player: player, gravity: engine.aspect.videoGravity)
+                    .opacity(ready ? 1 : 0)
             }
 
             // 单击=暂停/继续；长按=打开菜单。两者都不消费拖拽，不会挡住上下翻页
