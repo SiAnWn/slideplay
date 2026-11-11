@@ -26,6 +26,8 @@ struct RootView: View {
                 }
             } else {
                 PagerView()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .ignoresSafeArea()
             }
         }
         .overlay {
