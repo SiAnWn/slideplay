@@ -44,12 +44,16 @@ struct VideoPageView: View {
                     .opacity(ready ? 1 : 0)
             }
 
-            // 只接单击（暂停/继续）；不消费拖拽，因此不会挡住上下翻页
+            // 单击=暂停/继续；长按=打开菜单。两者都不消费拖拽，不会挡住上下翻页
             Color.clear
                 .contentShape(Rectangle())
                 .onTapGesture {
                     guard isCurrent else { return }
                     engine.isPlaying.toggle()
+                }
+                .onLongPressGesture(minimumDuration: 0.4) {
+                    guard isCurrent else { return }
+                    engine.drawerOpen = true
                 }
         }
         .clipped()
