@@ -1,5 +1,6 @@
 import UIKit
 import AVFoundation
+import AVKit
 import Combine
 import MediaPlayer
 
@@ -230,8 +231,8 @@ final class SlidePlayerViewController: UIViewController, UIGestureRecognizerDele
                 UIScreen.main.brightness = CGFloat(v)
                 engine.showHUD(icon: "sun.max.fill", text: "\(Int(v * 100))%")
             } else {
-                let v = min(1, max(0, base.volume + Float(frac)))
-                VolumeControl.set(v)
+                let v = min(1, max(0, base.volume + frac))
+                VolumeControl.set(Float(v))
                 engine.showHUD(icon: v <= 0 ? "speaker.slash.fill" : "speaker.wave.2.fill",
                                text: "\(Int(v * 100))%")
             }
