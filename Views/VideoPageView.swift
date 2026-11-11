@@ -22,6 +22,7 @@ struct VideoPageView: View {
     @State private var scrubbing = false
     @State private var scrubStart: Double = 0
     @State private var scrubTarget: Double = 0
+    @State private var videoAspect: CGFloat? = nil
 
     private var isCurrent: Bool { engine.current == index }
 
@@ -47,10 +48,16 @@ struct VideoPageView: View {
             }
 
             if let player {
-                // 单一渲染层。模糊填充的前景用「适配」(resizeAspect) 保证不裁切、不变形；
-                // 上下黑边由前面那层模糊背景填掉。
-                AVPlayerSurfaceView(player: player, gravity: engine.aspect.videoGravity)
-                    .opacity(ready ? 1 : 0)
+                if engine.aspect == .blurFill, let ar = videoAspect {
+                    // 视频只占自身比例那块、居中；四周由后面的模糊背景填充（不裁切、不变形）
+                    AVPlayerSurfaceView(player: player, gravity: .resizeAspect)
+                        .aspectRatio(ar, contentMode: .fit)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .opacity(ready ? 1 : 0)
+                } else {
+                    AVPlayerSurfaceView(player: player, gravity: engine.aspect.videoGravity)
+                        .opacity(ready ? 1 : 0)
+                }
             }
 
             // 单击=暂停/继续；长按=打开菜单。两者都不消费拖拽，不会挡住上下翻页
@@ -179,7 +186,13 @@ struct VideoPageView: View {
             let start = store.position(for: stableID) ?? 0
             let time = CMTime(seconds: start + 0.5, preferredTimescale: 600)
             if let cg = try? await gen.image(at: time).image {
-                await MainActor.run { self.thumbnail = UIImage(cgImage: cg) }
+                let img = UIImage(cgImage: cg)
+                await MainActor.run {
+                    self.thumbnail = img
+                    if img.size.width > 1, img.size.height > 1 {
+                        self.videoAspect = img.size.width / img.size.height
+                    }
+                }
             }
         }
     }
