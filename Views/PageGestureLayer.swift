@@ -1,1 +1,227 @@
-aW1wb3J0IFN3aWZ0VUkKaW1wb3J0IEFWRm91bmRhdGlvbgppbXBvcnQgTWVkaWFQbGF5ZXIKCi8vLyDmr4/pobXkuIrnmoTmiYvlir/lsYLvvIjpgI/mmI7liIbljLrvvIzkuI3mmL7npLrku7vkvZUgVUnvvInvvJoKLy8vIC0g5Lit5aSu77ya5Y2V5Ye75pKt5pS+L+aaguWBnO+8m+aMieS9jyAwLjM1cyDkuLTml7YgMiDlgI3pgJ/vvIzmnb7miYvmgaLlpI0KLy8vIC0g5Y+M5Ye75bemL+WPs+S+p++8muWQjumAgC/liY3ov5sgMTAg56eSCi8vLyAtIOW3puWNiuaoquWQkeaLluWKqO+8muS6ruW6pu+8m+WPs+WNiuaoquWQkeaLluWKqO+8mumfs+mHj++8iOerluWQkeeVmee7mee/u+mhte+8iQovLy8gLSDlupXpg6jmqKrlkJHmi5bliqjvvJrov5vluqbmnaHvvIjkuLTml7bmmL7npLrvvIkKLy8vIC0g5bem6L6557yY5Y+z5ruR77ya5omT5byA5L6n6L656I+c5Y2VCnN0cnVjdCBQYWdlR2VzdHVyZUxheWVyOiBWaWV3IHsKICAgIGxldCBwbGF5ZXI6IEFWUGxheWVyPwogICAgbGV0IGl0ZW06IFZpZGVvSXRlbQogICAgbGV0IGluZGV4OiBJbnQKCiAgICBARW52aXJvbm1lbnRPYmplY3QgcHJpdmF0ZSB2YXIgc3RvcmU6IExpYnJhcnlTdG9yZQogICAgQEVudmlyb25tZW50T2JqZWN0IHByaXZhdGUgdmFyIGVuZ2luZTogUGxheWVyRW5naW5lCgogICAgQFN0YXRlIHByaXZhdGUgdmFyIHZvbHVtZVNsaWRlcjogVUlTbGlkZXI/CiAgICBAU3RhdGUgcHJpdmF0ZSB2YXIgdm9sdW1lQmFzZTogRG91YmxlPwogICAgQFN0YXRlIHByaXZhdGUgdmFyIGJyaWdodG5lc3NCYXNlOiBEb3VibGU/CiAgICBAU3RhdGUgcHJpdmF0ZSB2YXIgc2Vla0Jhc2U6IERvdWJsZT8KICAgIEBTdGF0ZSBwcml2YXRlIHZhciBwcmVzc1Rhc2s6IFRhc2s8Vm9pZCwgTmV2ZXI+PwogICAgQFN0YXRlIHByaXZhdGUgdmFyIHByZXNzU3RhcnQgPSBEYXRlKCkKCiAgICBwcml2YXRlIHZhciBhY3RpdmU6IEJvb2wgeyBlbmdpbmUuY3VycmVudCA9PSBpbmRleCB9CgogICAgdmFyIGJvZHk6IHNvbWUgVmlldyB7CiAgICAgICAgR2VvbWV0cnlSZWFkZXIgeyBnZW8gaW4KICAgICAgICAgICAgbGV0IHcgPSBnZW8uc2l6ZS53aWR0aAogICAgICAgICAgICBsZXQgaCA9IGdlby5zaXplLmhlaWdodAogICAgICAgICAgICBaU3RhY2sgewogICAgICAgICAgICAgICAgLy8g5bem5Y2K77ya5Lqu5bqmCiAgICAgICAgICAgICAgICB6b25lKHcgLyAyLCBoLCB3IC8gNCwgaCAvIDIpCiAgICAgICAgICAgICAgICAgICAgLnNpbXVsdGFuZW91c0dlc3R1cmUoYnJpZ2h0bmVzc0RyYWcodykpCiAgICAgICAgICAgICAgICAgICAgLmdlc3R1cmUoZG91YmxlU2VlaygtMTApKQogICAgICAgICAgICAgICAgLy8g5Y+z5Y2K77ya6Z+z6YePCiAgICAgICAgICAgICAgICB6b25lKHcgLyAyLCBoLCB3ICogMyAvIDQsIGggLyAyKQogICAgICAgICAgICAgICAgICAgIC5zaW11bHRhbmVvdXNHZXN0dXJlKHZvbHVtZURyYWcodykpCiAgICAgICAgICAgICAgICAgICAgLmdlc3R1cmUoZG91YmxlU2VlaygxMCkpCiAgICAgICAgICAgICAgICAvLyDkuK3lpK7vvJrljZXlh7vmkq3mlL4v5pqC5YGcICsg6ZW/5oyJIDIg5YCN6YCf77yI5ZCI5bm25oiQ5LiA5Liq5omL5Yq/77yM6YG/5YWN55u45LqS5Yay56qB77yJCiAgICAgICAgICAgICAgICB6b25lKHcgLyAzLCBoLCB3IC8gMiwgaCAvIDIpCiAgICAgICAgICAgICAgICAgICAgLnNpbXVsdGFuZW91c0dlc3R1cmUoY2VudGVyR2VzdHVyZSkKICAgICAgICAgICAgICAgIC8vIOW6lemDqO+8mui/m+W6pgogICAgICAgICAgICAgICAgem9uZSh3LCAxMTAsIHcgLyAyLCBoIC0gNTUpCiAgICAgICAgICAgICAgICAgICAgLnNpbXVsdGFuZW91c0dlc3R1cmUoc2Vla0RyYWcodykpCiAgICAgICAgICAgICAgICAgICAgLmdlc3R1cmUodGFwVG9nZ2xlKQogICAgICAgICAgICAgICAgLy8g5bem6L6557yY77ya5omT5byA6I+c5Y2V77yI6YG/5byA54G15Yqo5bKb5Yy65Z+f77yJCiAgICAgICAgICAgICAgICB6b25lKDI4LCBoIC0gODAsIDE0LCBoIC8gMiArIDQwKQogICAgICAgICAgICAgICAgICAgIC5zaW11bHRhbmVvdXNHZXN0dXJlKGRyYXdlckRyYWcpCiAgICAgICAgICAgIH0KICAgICAgICB9CiAgICAgICAgLmJhY2tncm91bmQoCiAgICAgICAgICAgIFZvbHVtZUNvbnRyb2xIb3N0IHsgc2xpZGVyIGluIHZvbHVtZVNsaWRlciA9IHNsaWRlciB9CiAgICAgICAgICAgICAgICAuZnJhbWUod2lkdGg6IDEsIGhlaWdodDogMSkKICAgICAgICAgICAgICAgIC5vcGFjaXR5KDAuMDEpCiAgICAgICAgICAgICAgICAuYWxsb3dzSGl0VGVzdGluZyhmYWxzZSkKICAgICAgICApCiAgICB9CgogICAgcHJpdmF0ZSBmdW5jIHpvbmUoXyB3OiBDR0Zsb2F0LCBfIGg6IENHRmxvYXQsIF8geDogQ0dGbG9hdCwgXyB5OiBDR0Zsb2F0KSAtPiBzb21lIFZpZXcgewogICAgICAgIENvbG9yLmNsZWFyCiAgICAgICAgICAgIC5jb250ZW50U2hhcGUoUmVjdGFuZ2xlKCkpCiAgICAgICAgICAgIC5mcmFtZSh3aWR0aDogdywgaGVpZ2h0OiBoKQogICAgICAgICAgICAucG9zaXRpb24oeDogeCwgeTogeSkKICAgIH0KCiAgICAvLyBNQVJLOiAtIOeCueaMiQoKICAgIHByaXZhdGUgdmFyIHRhcFRvZ2dsZTogc29tZSBHZXN0dXJlIHsKICAgICAgICBUYXBHZXN0dXJlKCkub25FbmRlZCB7CiAgICAgICAgICAgIGd1YXJkIGFjdGl2ZSBlbHNlIHsgcmV0dXJuIH0KICAgICAgICAgICAgZW5naW5lLmlzUGxheWluZy50b2dnbGUoKQogICAgICAgIH0KICAgIH0KCiAgICBwcml2YXRlIGZ1bmMgZG91YmxlU2VlayhfIHNlY29uZHM6IERvdWJsZSkgLT4gc29tZSBHZXN0dXJlIHsKICAgICAgICBUYXBHZXN0dXJlKGNvdW50OiAyKQogICAgICAgICAgICAub25FbmRlZCB7IHNlZWsoYnk6IHNlY29uZHMpIH0KICAgICAgICAgICAgLnNpbXVsdGFuZW91c2x5KGJlZm9yZTogVGFwR2VzdHVyZShjb3VudDogMSkub25FbmRlZCB7CiAgICAgICAgICAgICAgICBndWFyZCBhY3RpdmUgZWxzZSB7IHJldHVybiB9CiAgICAgICAgICAgICAgICBlbmdpbmUuaXNQbGF5aW5nLnRvZ2dsZSgpCiAgICAgICAgICAgIH0pCiAgICB9CgogICAgcHJpdmF0ZSBmdW5jIHNlZWsoYnkgZGVsdGE6IERvdWJsZSkgewogICAgICAgIGd1YXJkIGFjdGl2ZSwgbGV0IHBsYXllciBlbHNlIHsgcmV0dXJuIH0KICAgICAgICBsZXQgY3VyID0gQ01UaW1lR2V0U2Vjb25kcyhwbGF5ZXIuY3VycmVudFRpbWUoKSkKICAgICAgICBndWFyZCBjdXIuaXNGaW5pdGUgZWxzZSB7IHJldHVybiB9CiAgICAgICAgbGV0IGR1ciA9IENNVGltZUdldFNlY29uZHMocGxheWVyLmN1cnJlbnRJdGVtPy5kdXJhdGlvbiA/PyAuemVybykKICAgICAgICBsZXQgdCA9IG1heCgwLCBjdXIgKyBkZWx0YSkKICAgICAgICBsZXQgY2xhbXBlZCA9IGR1ci5pc0Zpbml0ZSAmJiBkdXIgPiAwID8gbWluKHQsIGR1cikgOiB0CiAgICAgICAgcGxheWVyLnNlZWsodG86IENNVGltZShzZWNvbmRzOiBjbGFtcGVkLCBwcmVmZXJyZWRUaW1lc2NhbGU6IDYwMCksCiAgICAgICAgICAgICAgICAgICAgdG9sZXJhbmNlQmVmb3JlOiAuemVybywgdG9sZXJhbmNlQWZ0ZXI6IC56ZXJvKQogICAgICAgIGVuZ2luZS5zaG93SFVEKGljb246IGRlbHRhID49IDAgPyAiZm9yd2FyZC5maWxsIiA6ICJiYWNrd2FyZC5maWxsIiwKICAgICAgICAgICAgICAgICAgICAgICB0ZXh0OiAiXChJbnQoYWJzKGRlbHRhKSkpIOenkiIpCiAgICB9CgogICAgLy8gTUFSSzogLSDkuK3lpK7vvJrljZXlh7vmmoLlgZwgKyDplb/mjIkgMiDlgI3pgJ/vvIjnlKjml7bpl7TljLrliIbljZXlh7vkuI7plb/mjInvvIkKCiAgICBwcml2YXRlIHZhciBjZW50ZXJHZXN0dXJlOiBzb21lIEdlc3R1cmUgewogICAgICAgIERyYWdHZXN0dXJlKG1pbmltdW1EaXN0YW5jZTogMCkKICAgICAgICAgICAgLm9uQ2hhbmdlZCB7IF8gaW4KICAgICAgICAgICAgICAgIGd1YXJkIGFjdGl2ZSwgcHJlc3NUYXNrID09IG5pbCBlbHNlIHsgcmV0dXJuIH0KICAgICAgICAgICAgICAgIHByZXNzU3RhcnQgPSBEYXRlKCkKICAgICAgICAgICAgICAgIHByZXNzVGFzayA9IFRhc2sgewogICAgICAgICAgICAgICAgICAgIHRyeT8gYXdhaXQgVGFzay5zbGVlcChuYW5vc2Vjb25kczogMzUwXzAwMF8wMDApCiAgICAgICAgICAgICAgICAgICAgZ3VhcmQgIVRhc2suaXNDYW5jZWxsZWQgZWxzZSB7IHJldHVybiB9CiAgICAgICAgICAgICAgICAgICAgYXdhaXQgTWFpbkFjdG9yLnJ1biB7CiAgICAgICAgICAgICAgICAgICAgICAgIGd1YXJkIGFjdGl2ZSBlbHNlIHsgcmV0dXJuIH0KICAgICAgICAgICAgICAgICAgICAgICAgZW5naW5lLnRlbXBSYXRlID0gMi4wCiAgICAgICAgICAgICAgICAgICAgICAgIGVuZ2luZS5zaG93SFVEKGljb246ICJmb3J3YXJkLmZpbGwiLCB0ZXh0OiAiMsOXIOS4tOaXtuWAjemAnyIpCiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgfQogICAgICAgICAgICB9CiAgICAgICAgICAgIC5vbkVuZGVkIHsgdmFsdWUgaW4KICAgICAgICAgICAgICAgIHByZXNzVGFzaz8uY2FuY2VsKCkKICAgICAgICAgICAgICAgIHByZXNzVGFzayA9IG5pbAogICAgICAgICAgICAgICAgbGV0IHdhc0xvbmcgPSBEYXRlKCkudGltZUludGVydmFsU2luY2UocHJlc3NTdGFydCkgPj0gMC4zNQogICAgICAgICAgICAgICAgbGV0IG1vdmVkID0gYWJzKHZhbHVlLnRyYW5zbGF0aW9uLndpZHRoKSArIGFicyh2YWx1ZS50cmFuc2xhdGlvbi5oZWlnaHQpID4gMTIKICAgICAgICAgICAgICAgIGlmIGVuZ2luZS50ZW1wUmF0ZSAhPSBuaWwgewogICAgICAgICAgICAgICAgICAgIGVuZ2luZS50ZW1wUmF0ZSA9IG5pbCAgICAgICAgICAgIC8vIOS7jiAyw5cg5p2+5omL5oGi5aSNCiAgICAgICAgICAgICAgICB9IGVsc2UgaWYgIXdhc0xvbmcgJiYgIW1vdmVkICYmIGFjdGl2ZSB7CiAgICAgICAgICAgICAgICAgICAgZW5naW5lLmlzUGxheWluZy50b2dnbGUoKSAgICAgICAgLy8g6L2754K5ID0g5pKt5pS+L+aaguWBnAogICAgICAgICAgICAgICAgfQogICAgICAgICAgICB9CiAgICB9CgogICAgLy8gTUFSSzogLSDkuq7luqYgLyDpn7Pph48KCiAgICBwcml2YXRlIGZ1bmMgYnJpZ2h0bmVzc0RyYWcoXyB3OiBDR0Zsb2F0KSAtPiBzb21lIEdlc3R1cmUgewogICAgICAgIERyYWdHZXN0dXJlKG1pbmltdW1EaXN0YW5jZTogMTApCiAgICAgICAgICAgIC5vbkNoYW5nZWQgeyB2IGluCiAgICAgICAgICAgICAgICBndWFyZCBhY3RpdmUsIGFicyh2LnRyYW5zbGF0aW9uLndpZHRoKSA+IGFicyh2LnRyYW5zbGF0aW9uLmhlaWdodCkgZWxzZSB7IHJldHVybiB9CiAgICAgICAgICAgICAgICBpZiBicmlnaHRuZXNzQmFzZSA9PSBuaWwgeyBicmlnaHRuZXNzQmFzZSA9IGN1cnJlbnRCcmlnaHRuZXNzKCkgfQogICAgICAgICAgICAgICAgZ3VhcmQgbGV0IGJhc2UgPSBicmlnaHRuZXNzQmFzZSBlbHNlIHsgcmV0dXJuIH0KICAgICAgICAgICAgICAgIGxldCB2YWwgPSBtaW4oMSwgbWF4KDAsIGJhc2UgKyBEb3VibGUodi50cmFuc2xhdGlvbi53aWR0aCAvIHcpKSkKICAgICAgICAgICAgICAgIHNldEJyaWdodG5lc3ModmFsKQogICAgICAgICAgICAgICAgZW5naW5lLnNob3dIVUQoaWNvbjogInN1bi5tYXguZmlsbCIsIHRleHQ6ICJcKEludCh2YWwgKiAxMDApKSUiKQogICAgICAgICAgICB9CiAgICAgICAgICAgIC5vbkVuZGVkIHsgXyBpbiBicmlnaHRuZXNzQmFzZSA9IG5pbCB9CiAgICB9CgogICAgcHJpdmF0ZSBmdW5jIHZvbHVtZURyYWcoXyB3OiBDR0Zsb2F0KSAtPiBzb21lIEdlc3R1cmUgewogICAgICAgIERyYWdHZXN0dXJlKG1pbmltdW1EaXN0YW5jZTogMTApCiAgICAgICAgICAgIC5vbkNoYW5nZWQgeyB2IGluCiAgICAgICAgICAgICAgICBndWFyZCBhY3RpdmUsIGFicyh2LnRyYW5zbGF0aW9uLndpZHRoKSA+IGFicyh2LnRyYW5zbGF0aW9uLmhlaWdodCkgZWxzZSB7IHJldHVybiB9CiAgICAgICAgICAgICAgICBpZiB2b2x1bWVCYXNlID09IG5pbCB7IHZvbHVtZUJhc2UgPSBEb3VibGUoQVZBdWRpb1Nlc3Npb24uc2hhcmVkSW5zdGFuY2UoKS5vdXRwdXRWb2x1bWUpIH0KICAgICAgICAgICAgICAgIGd1YXJkIGxldCBiYXNlID0gdm9sdW1lQmFzZSBlbHNlIHsgcmV0dXJuIH0KICAgICAgICAgICAgICAgIGxldCB2YWwgPSBtaW4oMSwgbWF4KDAsIGJhc2UgKyBEb3VibGUodi50cmFuc2xhdGlvbi53aWR0aCAvIHcpKSkKICAgICAgICAgICAgICAgIHZvbHVtZVNsaWRlcj8udmFsdWUgPSBGbG9hdCh2YWwpCiAgICAgICAgICAgICAgICBlbmdpbmUuc2hvd0hVRChpY29uOiB2YWwgPT0gMCA/ICJzcGVha2VyLnNsYXNoLmZpbGwiIDogInNwZWFrZXIud2F2ZS4yLmZpbGwiLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdGV4dDogIlwoSW50KHZhbCAqIDEwMCkpJSIpCiAgICAgICAgICAgIH0KICAgICAgICAgICAgLm9uRW5kZWQgeyBfIGluIHZvbHVtZUJhc2UgPSBuaWwgfQogICAgfQoKICAgIHByaXZhdGUgdmFyIHdpbmRvdzogVUlXaW5kb3c/IHsKICAgICAgICBVSUFwcGxpY2F0aW9uLnNoYXJlZC5jb25uZWN0ZWRTY2VuZXMKICAgICAgICAgICAgLmNvbXBhY3RNYXAgeyAoJDAgYXM/IFVJV2luZG93U2NlbmUpPy5rZXlXaW5kb3cgfQogICAgICAgICAgICAuZmlyc3QKICAgIH0KCiAgICBwcml2YXRlIGZ1bmMgY3VycmVudEJyaWdodG5lc3MoKSAtPiBEb3VibGUgewogICAgICAgIERvdWJsZSh3aW5kb3c/LnNjcmVlbi5icmlnaHRuZXNzID8/IDAuNSkKICAgIH0KCiAgICBwcml2YXRlIGZ1bmMgc2V0QnJpZ2h0bmVzcyhfIHZhbHVlOiBEb3VibGUpIHsKICAgICAgICB3aW5kb3c/LnNjcmVlbi5icmlnaHRuZXNzID0gQ0dGbG9hdCh2YWx1ZSkKICAgIH0KCiAgICAvLyBNQVJLOiAtIOi/m+W6pgoKICAgIHByaXZhdGUgZnVuYyBzZWVrRHJhZyhfIHc6IENHRmxvYXQpIC0+IHNvbWUgR2VzdHVyZSB7CiAgICAgICAgRHJhZ0dlc3R1cmUobWluaW11bURpc3RhbmNlOiAxMCkKICAgICAgICAgICAgLm9uQ2hhbmdlZCB7IHYgaW4KICAgICAgICAgICAgICAgIGd1YXJkIGFjdGl2ZSwgbGV0IHBsYXllciwKICAgICAgICAgICAgICAgICAgICAgIGFicyh2LnRyYW5zbGF0aW9uLndpZHRoKSA+IGFicyh2LnRyYW5zbGF0aW9uLmhlaWdodCkgZWxzZSB7IHJldHVybiB9CiAgICAgICAgICAgICAgICBsZXQgZHVyID0gQ01UaW1lR2V0U2Vjb25kcyhwbGF5ZXIuY3VycmVudEl0ZW0/LmR1cmF0aW9uID8/IC56ZXJvKQogICAgICAgICAgICAgICAgZ3VhcmQgZHVyLmlzRmluaXRlLCBkdXIgPiAxIGVsc2UgeyByZXR1cm4gfQogICAgICAgICAgICAgICAgaWYgc2Vla0Jhc2UgPT0gbmlsIHsgc2Vla0Jhc2UgPSBDTVRpbWVHZXRTZWNvbmRzKHBsYXllci5jdXJyZW50VGltZSgpKSB9CiAgICAgICAgICAgICAgICBndWFyZCBsZXQgYmFzZSA9IHNlZWtCYXNlIGVsc2UgeyByZXR1cm4gfQogICAgICAgICAgICAgICAgbGV0IHQgPSBtaW4oZHVyLCBtYXgoMCwgYmFzZSArIERvdWJsZSh2LnRyYW5zbGF0aW9uLndpZHRoIC8gdykgKiBkdXIpKQogICAgICAgICAgICAgICAgZW5naW5lLnNlZWtpbmcgPSBQbGF5ZXJFbmdpbmUuU2Vla0luZm8oaXRlbTogdCwgdG90YWw6IGR1cikKICAgICAgICAgICAgfQogICAgICAgICAgICAub25FbmRlZCB7IHYgaW4KICAgICAgICAgICAgICAgIGRlZmVyIHsgc2Vla0Jhc2UgPSBuaWw7IGVuZ2luZS5zZWVraW5nID0gbmlsIH0KICAgICAgICAgICAgICAgIGd1YXJkIGFjdGl2ZSwgbGV0IHBsYXllciwgbGV0IGJhc2UgPSBzZWVrQmFzZSwKICAgICAgICAgICAgICAgICAgICAgIGFicyh2LnRyYW5zbGF0aW9uLndpZHRoKSA+IGFicyh2LnRyYW5zbGF0aW9uLmhlaWdodCkgZWxzZSB7IHJldHVybiB9CiAgICAgICAgICAgICAgICBsZXQgZHVyID0gQ01UaW1lR2V0U2Vjb25kcyhwbGF5ZXIuY3VycmVudEl0ZW0/LmR1cmF0aW9uID8/IC56ZXJvKQogICAgICAgICAgICAgICAgZ3VhcmQgZHVyLmlzRmluaXRlLCBkdXIgPiAxIGVsc2UgeyByZXR1cm4gfQogICAgICAgICAgICAgICAgbGV0IHQgPSBtaW4oZHVyLCBtYXgoMCwgYmFzZSArIERvdWJsZSh2LnRyYW5zbGF0aW9uLndpZHRoIC8gdykgKiBkdXIpKQogICAgICAgICAgICAgICAgcGxheWVyLnNlZWsodG86IENNVGltZShzZWNvbmRzOiB0LCBwcmVmZXJyZWRUaW1lc2NhbGU6IDYwMCksCiAgICAgICAgICAgICAgICAgICAgICAgICAgICB0b2xlcmFuY2VCZWZvcmU6IC56ZXJvLCB0b2xlcmFuY2VBZnRlcjogLnplcm8pCiAgICAgICAgICAgICAgICBzdG9yZS5zYXZlUG9zaXRpb24odCwgZm9yOiBpdGVtLnN0YWJsZUlEKQogICAgICAgICAgICB9CiAgICB9CgogICAgLy8gTUFSSzogLSDkvqfovrnoj5zljZUKCiAgICBwcml2YXRlIHZhciBkcmF3ZXJEcmFnOiBzb21lIEdlc3R1cmUgewogICAgICAgIERyYWdHZXN0dXJlKG1pbmltdW1EaXN0YW5jZTogOCkKICAgICAgICAgICAgLm9uQ2hhbmdlZCB7IHYgaW4KICAgICAgICAgICAgICAgIGd1YXJkIGFjdGl2ZSwKICAgICAgICAgICAgICAgICAgICAgIGFicyh2LnRyYW5zbGF0aW9uLndpZHRoKSA+IGFicyh2LnRyYW5zbGF0aW9uLmhlaWdodCksCiAgICAgICAgICAgICAgICAgICAgICB2LnRyYW5zbGF0aW9uLndpZHRoID4gMjQgZWxzZSB7IHJldHVybiB9CiAgICAgICAgICAgICAgICBlbmdpbmUuZHJhd2VyT3BlbiA9IHRydWUKICAgICAgICAgICAgfQogICAgfQp9CgovLy8g56a75bGP5oyC5LiA5LiqIE1QVm9sdW1lVmlld++8jOeUqOWug+eahOWGhemDqCBzbGlkZXIg5p2lIuiuvue9riLns7vnu5/pn7Pph4/jgIIKcHJpdmF0ZSBzdHJ1Y3QgVm9sdW1lQ29udHJvbEhvc3Q6IFVJVmlld1JlcHJlc2VudGFibGUgewogICAgbGV0IG9uU2xpZGVyOiAoVUlTbGlkZXI/KSAtPiBWb2lkCgogICAgZnVuYyBtYWtlVUlWaWV3KGNvbnRleHQ6IENvbnRleHQpIC0+IFVJVmlldyB7CiAgICAgICAgbGV0IGNvbnRhaW5lciA9IFVJVmlldyhmcmFtZTogQ0dSZWN0KHg6IC0xMDAsIHk6IC0xMDAsIHdpZHRoOiAxLCBoZWlnaHQ6IDEpKQogICAgICAgIGxldCBtdiA9IE1QVm9sdW1lVmlldyhmcmFtZTogQ0dSZWN0KHg6IDAsIHk6IDAsIHdpZHRoOiAxMDAsIGhlaWdodDogMjApKQogICAgICAgIG12LnNob3dzVm9sdW1lU2xpZGVyID0gdHJ1ZQogICAgICAgIGNvbnRhaW5lci5hZGRTdWJ2aWV3KG12KQogICAgICAgIGxldCBzbGlkZXIgPSBtdi5zdWJ2aWV3cy5jb21wYWN0TWFwIHsgJDAgYXM/IFVJU2xpZGVyIH0uZmlyc3QKICAgICAgICBEaXNwYXRjaFF1ZXVlLm1haW4uYXN5bmMgeyBzZWxmLm9uU2xpZGVyKHNsaWRlcikgfQogICAgICAgIHJldHVybiBjb250YWluZXIKICAgIH0KCiAgICBmdW5jIHVwZGF0ZVVJVmlldyhfIHVpVmlldzogVUlWaWV3LCBjb250ZXh0OiBDb250ZXh0KSB7fQp9Cg==
+import SwiftUI
+import AVFoundation
+import MediaPlayer
+
+/// 每页上的手势层（透明分区，不显示任何 UI）：
+/// - 中央：单击播放/暂停；按住 0.35s 临时 2 倍速，松手恢复
+/// - 双击左/右侧：后退/前进 10 秒
+/// - 左半横向拖动：亮度；右半横向拖动：音量（竖向留给翻页）
+/// - 底部横向拖动：进度条（临时显示）
+/// - 左边缘右滑：打开侧边菜单
+struct PageGestureLayer: View {
+    let player: AVPlayer?
+    let item: VideoItem
+    let index: Int
+
+    @EnvironmentObject private var store: LibraryStore
+    @EnvironmentObject private var engine: PlayerEngine
+
+    @State private var volumeSlider: UISlider?
+    @State private var volumeBase: Double?
+    @State private var brightnessBase: Double?
+    @State private var seekBase: Double?
+    @State private var pressTask: Task<Void, Never>?
+    @State private var pressStart = Date()
+
+    private var active: Bool { engine.current == index }
+
+    var body: some View {
+        GeometryReader { geo in
+            let w = geo.size.width
+            let h = geo.size.height
+            ZStack {
+                // 左半：亮度
+                zone(w / 2, h, w / 4, h / 2)
+                    .simultaneousGesture(brightnessDrag(w))
+                    .gesture(doubleSeek(-10))
+                // 右半：音量
+                zone(w / 2, h, w * 3 / 4, h / 2)
+                    .simultaneousGesture(volumeDrag(w))
+                    .gesture(doubleSeek(10))
+                // 中央：单击播放/暂停 + 长按 2 倍速（合并成一个手势，避免相互冲突）
+                zone(w / 3, h, w / 2, h / 2)
+                    .simultaneousGesture(centerGesture)
+                // 底部：进度
+                zone(w, 110, w / 2, h - 55)
+                    .simultaneousGesture(seekDrag(w))
+                    .gesture(tapToggle)
+                // 左边缘：打开菜单（避开灵动岛区域）
+                zone(28, h - 80, 14, h / 2 + 40)
+                    .simultaneousGesture(drawerDrag)
+            }
+        }
+        .background(
+            VolumeControlHost { slider in volumeSlider = slider }
+                .frame(width: 1, height: 1)
+                .opacity(0.01)
+                .allowsHitTesting(false)
+        )
+    }
+
+    private func zone(_ w: CGFloat, _ h: CGFloat, _ x: CGFloat, _ y: CGFloat) -> some View {
+        Color.clear
+            .contentShape(Rectangle())
+            .frame(width: w, height: h)
+            .position(x: x, y: y)
+    }
+
+    // MARK: - 点按
+
+    private var tapToggle: some Gesture {
+        TapGesture().onEnded {
+            guard active else { return }
+            engine.isPlaying.toggle()
+        }
+    }
+
+    private func doubleSeek(_ seconds: Double) -> some Gesture {
+        TapGesture(count: 2)
+            .onEnded { seek(by: seconds) }
+            .simultaneously(before: TapGesture(count: 1).onEnded {
+                guard active else { return }
+                engine.isPlaying.toggle()
+            })
+    }
+
+    private func seek(by delta: Double) {
+        guard active, let player else { return }
+        let cur = CMTimeGetSeconds(player.currentTime())
+        guard cur.isFinite else { return }
+        let dur = CMTimeGetSeconds(player.currentItem?.duration ?? .zero)
+        let t = max(0, cur + delta)
+        let clamped = dur.isFinite && dur > 0 ? min(t, dur) : t
+        player.seek(to: CMTime(seconds: clamped, preferredTimescale: 600),
+                    toleranceBefore: .zero, toleranceAfter: .zero)
+        engine.showHUD(icon: delta >= 0 ? "forward.fill" : "backward.fill",
+                       text: "\(Int(abs(delta))) 秒")
+    }
+
+    // MARK: - 中央：单击暂停 + 长按 2 倍速（用时间区分单击与长按）
+
+    private var centerGesture: some Gesture {
+        DragGesture(minimumDistance: 0)
+            .onChanged { _ in
+                guard active, pressTask == nil else { return }
+                pressStart = Date()
+                pressTask = Task {
+                    try? await Task.sleep(nanoseconds: 350_000_000)
+                    guard !Task.isCancelled else { return }
+                    await MainActor.run {
+                        guard active else { return }
+                        engine.tempRate = 2.0
+                        engine.showHUD(icon: "forward.fill", text: "2× 临时倍速")
+                    }
+                }
+            }
+            .onEnded { value in
+                pressTask?.cancel()
+                pressTask = nil
+                let wasLong = Date().timeIntervalSince(pressStart) >= 0.35
+                let moved = abs(value.translation.width) + abs(value.translation.height) > 12
+                if engine.tempRate != nil {
+                    engine.tempRate = nil            // 从 2× 松手恢复
+                } else if !wasLong && !moved && active {
+                    engine.isPlaying.toggle()        // 轻点 = 播放/暂停
+                }
+            }
+    }
+
+    // MARK: - 亮度 / 音量
+
+    private func brightnessDrag(_ w: CGFloat) -> some Gesture {
+        DragGesture(minimumDistance: 10)
+            .onChanged { v in
+                guard active, abs(v.translation.width) > abs(v.translation.height) else { return }
+                if brightnessBase == nil { brightnessBase = currentBrightness() }
+                guard let base = brightnessBase else { return }
+                let val = min(1, max(0, base + Double(v.translation.width / w)))
+                setBrightness(val)
+                engine.showHUD(icon: "sun.max.fill", text: "\(Int(val * 100))%")
+            }
+            .onEnded { _ in brightnessBase = nil }
+    }
+
+    private func volumeDrag(_ w: CGFloat) -> some Gesture {
+        DragGesture(minimumDistance: 10)
+            .onChanged { v in
+                guard active, abs(v.translation.width) > abs(v.translation.height) else { return }
+                if volumeBase == nil { volumeBase = Double(AVAudioSession.sharedInstance().outputVolume) }
+                guard let base = volumeBase else { return }
+                let val = min(1, max(0, base + Double(v.translation.width / w)))
+                volumeSlider?.value = Float(val)
+                engine.showHUD(icon: val == 0 ? "speaker.slash.fill" : "speaker.wave.2.fill",
+                               text: "\(Int(val * 100))%")
+            }
+            .onEnded { _ in volumeBase = nil }
+    }
+
+    private var window: UIWindow? {
+        UIApplication.shared.connectedScenes
+            .compactMap { ($0 as? UIWindowScene)?.keyWindow }
+            .first
+    }
+
+    private func currentBrightness() -> Double {
+        Double(window?.screen.brightness ?? 0.5)
+    }
+
+    private func setBrightness(_ value: Double) {
+        window?.screen.brightness = CGFloat(value)
+    }
+
+    // MARK: - 进度
+
+    private func seekDrag(_ w: CGFloat) -> some Gesture {
+        DragGesture(minimumDistance: 10)
+            .onChanged { v in
+                guard active, let player,
+                      abs(v.translation.width) > abs(v.translation.height) else { return }
+                let dur = CMTimeGetSeconds(player.currentItem?.duration ?? .zero)
+                guard dur.isFinite, dur > 1 else { return }
+                if seekBase == nil { seekBase = CMTimeGetSeconds(player.currentTime()) }
+                guard let base = seekBase else { return }
+                let t = min(dur, max(0, base + Double(v.translation.width / w) * dur))
+                engine.seeking = PlayerEngine.SeekInfo(item: t, total: dur)
+            }
+            .onEnded { v in
+                defer { seekBase = nil; engine.seeking = nil }
+                guard active, let player, let base = seekBase,
+                      abs(v.translation.width) > abs(v.translation.height) else { return }
+                let dur = CMTimeGetSeconds(player.currentItem?.duration ?? .zero)
+                guard dur.isFinite, dur > 1 else { return }
+                let t = min(dur, max(0, base + Double(v.translation.width / w) * dur))
+                player.seek(to: CMTime(seconds: t, preferredTimescale: 600),
+                            toleranceBefore: .zero, toleranceAfter: .zero)
+                store.savePosition(t, for: item.stableID)
+            }
+    }
+
+    // MARK: - 侧边菜单
+
+    private var drawerDrag: some Gesture {
+        DragGesture(minimumDistance: 8)
+            .onChanged { v in
+                guard active,
+                      abs(v.translation.width) > abs(v.translation.height),
+                      v.translation.width > 24 else { return }
+                engine.drawerOpen = true
+            }
+    }
+}
+
+/// 离屏挂一个 MPVolumeView，用它的内部 slider 来"设置"系统音量。
+private struct VolumeControlHost: UIViewRepresentable {
+    let onSlider: (UISlider?) -> Void
+
+    func makeUIView(context: Context) -> UIView {
+        let container = UIView(frame: CGRect(x: -100, y: -100, width: 1, height: 1))
+        let mv = MPVolumeView(frame: CGRect(x: 0, y: 0, width: 100, height: 20))
+        mv.showsVolumeSlider = true
+        container.addSubview(mv)
+        let slider = mv.subviews.compactMap { $0 as? UISlider }.first
+        DispatchQueue.main.async { self.onSlider(slider) }
+        return container
+    }
+
+    func updateUIView(_ uiView: UIView, context: Context) {}
+}

@@ -1,1 +1,133 @@
-aW1wb3J0IFN3aWZ0VUkKCi8vLyDkuIDkuKrooqvorrDkvY/nmoTmlofku7blpLnjgIJpT1Mg5LiK5Lmm562+5LiN6ZyA6KaBIG1hY09TIOeahCBzZWN1cml0eSBzY29wZe+8jAovLy8g5L2G55So5oi36YCa6L+H5paH5qGj6YCJ5Y+W5Zmo5o6I5p2D55qE5paH5Lu25aS577yM5YW26K6/6Zeu5p2D5Lya6ZqP5Lmm562+6Leo5ZCv5Yqo5L+d55WZ44CCCnN0cnVjdCBGb2xkZXJFbnRyeTogSWRlbnRpZmlhYmxlLCBDb2RhYmxlLCBIYXNoYWJsZSB7CiAgICBsZXQgaWQ6IFVVSUQKICAgIHZhciBuYW1lOiBTdHJpbmcKICAgIHZhciBib29rbWFyazogRGF0YQp9CgovLy8g566h55CG5aSa5Liq5paH5Lu25aS55Lmm562+77ya5re75Yqg44CB5YiH5o2i44CB56e76Zmk44CB5omr5o+P5b2T5YmN5r+A5rS755qE5paH5Lu25aS544CCCmZpbmFsIGNsYXNzIExpYnJhcnlNYW5hZ2VyOiBPYnNlcnZhYmxlT2JqZWN0IHsKICAgIEBQdWJsaXNoZWQgdmFyIGZvbGRlcnM6IFtGb2xkZXJFbnRyeV0gPSBbXQogICAgQFB1Ymxpc2hlZCB2YXIgYWN0aXZlRm9sZGVySUQ6IFVVSUQ/CiAgICBAUHVibGlzaGVkIHZhciBsYXN0RXJyb3I6IFN0cmluZz8KCiAgICBwcml2YXRlKHNldCkgdmFyIGFjdGl2ZVVSTDogVVJMPwoKICAgIHByaXZhdGUgbGV0IGZvbGRlcnNLZXkgPSAiZm9sZGVyRW50cmllcyIKICAgIHByaXZhdGUgbGV0IGFjdGl2ZUtleSA9ICJhY3RpdmVGb2xkZXJJRCIKCiAgICB2YXIgYWN0aXZlRm9sZGVyTmFtZTogU3RyaW5nPyB7CiAgICAgICAgZm9sZGVycy5maXJzdCB7ICQwLmlkID09IGFjdGl2ZUZvbGRlcklEIH0/Lm5hbWUKICAgIH0KCiAgICAvLyBNQVJLOiAtIOaMgeS5heWMlgoKICAgIGZ1bmMgbG9hZCgpIHsKICAgICAgICBpZiBsZXQgZGF0YSA9IFVzZXJEZWZhdWx0cy5zdGFuZGFyZC5kYXRhKGZvcktleTogZm9sZGVyc0tleSksCiAgICAgICAgICAgbGV0IGxpc3QgPSB0cnk/IEpTT05EZWNvZGVyKCkuZGVjb2RlKFtGb2xkZXJFbnRyeV0uc2VsZiwgZnJvbTogZGF0YSkgewogICAgICAgICAgICBmb2xkZXJzID0gbGlzdAogICAgICAgIH0KICAgICAgICBpZiBsZXQgcmF3ID0gVXNlckRlZmF1bHRzLnN0YW5kYXJkLnN0cmluZyhmb3JLZXk6IGFjdGl2ZUtleSksCiAgICAgICAgICAgbGV0IGlkID0gVVVJRCh1dWlkU3RyaW5nOiByYXcpLAogICAgICAgICAgIGZvbGRlcnMuY29udGFpbnMod2hlcmU6IHsgJDAuaWQgPT0gaWQgfSkgewogICAgICAgICAgICBfID0gYWN0aXZhdGUoaWQ6IGlkKQogICAgICAgIH0KICAgIH0KCiAgICBwcml2YXRlIGZ1bmMgcGVyc2lzdCgpIHsKICAgICAgICBpZiBsZXQgZGF0YSA9IHRyeT8gSlNPTkVuY29kZXIoKS5lbmNvZGUoZm9sZGVycykgewogICAgICAgICAgICBVc2VyRGVmYXVsdHMuc3RhbmRhcmQuc2V0KGRhdGEsIGZvcktleTogZm9sZGVyc0tleSkKICAgICAgICB9CiAgICAgICAgVXNlckRlZmF1bHRzLnN0YW5kYXJkLnNldChhY3RpdmVGb2xkZXJJRD8udXVpZFN0cmluZywgZm9yS2V5OiBhY3RpdmVLZXkpCiAgICB9CgogICAgLy8gTUFSSzogLSDmlofku7blpLnnrqHnkIYKCiAgICBmdW5jIGFkZEZvbGRlcih1cmw6IFVSTCkgewogICAgICAgIGRvIHsKICAgICAgICAgICAgbGV0IGJvb2ttYXJrID0gdHJ5IHVybC5ib29rbWFya0RhdGEob3B0aW9uczogW10sCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGluY2x1ZGluZ1Jlc291cmNlVmFsdWVzRm9yS2V5czogbmlsLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICByZWxhdGl2ZVRvOiBuaWwpCiAgICAgICAgICAgIGxldCBlbnRyeSA9IEZvbGRlckVudHJ5KGlkOiBVVUlEKCksIG5hbWU6IHVybC5sYXN0UGF0aENvbXBvbmVudCwgYm9va21hcms6IGJvb2ttYXJrKQogICAgICAgICAgICBmb2xkZXJzLmFwcGVuZChlbnRyeSkKICAgICAgICAgICAgcGVyc2lzdCgpCiAgICAgICAgICAgIF8gPSBhY3RpdmF0ZShpZDogZW50cnkuaWQpCiAgICAgICAgfSBjYXRjaCB7CiAgICAgICAgICAgIGxhc3RFcnJvciA9ICLml6Dms5XorrDkvY/mlofku7blpLnvvJpcKGVycm9yLmxvY2FsaXplZERlc2NyaXB0aW9uKSIKICAgICAgICB9CiAgICB9CgogICAgQGRpc2NhcmRhYmxlUmVzdWx0CiAgICBmdW5jIGFjdGl2YXRlKGlkOiBVVUlEKSAtPiBCb29sIHsKICAgICAgICBndWFyZCBsZXQgZW50cnkgPSBmb2xkZXJzLmZpcnN0KHdoZXJlOiB7ICQwLmlkID09IGlkIH0pIGVsc2UgeyByZXR1cm4gZmFsc2UgfQogICAgICAgIHZhciBzdGFsZSA9IGZhbHNlCiAgICAgICAgZ3VhcmQgbGV0IHVybCA9IHRyeT8gVVJMKHJlc29sdmluZ0Jvb2ttYXJrRGF0YTogZW50cnkuYm9va21hcmssCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIG9wdGlvbnM6IFtdLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICByZWxhdGl2ZVRvOiBuaWwsCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGJvb2ttYXJrRGF0YUlzU3RhbGU6ICZzdGFsZSkgZWxzZSB7CiAgICAgICAgICAgIGxhc3RFcnJvciA9ICLml6Dms5XmiZPlvIDmlofku7blpLnvvJpcKGVudHJ5Lm5hbWUpIgogICAgICAgICAgICByZXR1cm4gZmFsc2UKICAgICAgICB9CiAgICAgICAgYWN0aXZlVVJMID0gdXJsCiAgICAgICAgYWN0aXZlRm9sZGVySUQgPSBpZAogICAgICAgIGlmIHN0YWxlLAogICAgICAgICAgIGxldCBmcmVzaCA9IHRyeT8gdXJsLmJvb2ttYXJrRGF0YShvcHRpb25zOiBbXSwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgaW5jbHVkaW5nUmVzb3VyY2VWYWx1ZXNGb3JLZXlzOiBuaWwsCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHJlbGF0aXZlVG86IG5pbCkgewogICAgICAgICAgICBpZiBsZXQgaSA9IGZvbGRlcnMuZmlyc3RJbmRleCh3aGVyZTogeyAkMC5pZCA9PSBpZCB9KSB7CiAgICAgICAgICAgICAgICBmb2xkZXJzW2ldLmJvb2ttYXJrID0gZnJlc2gKICAgICAgICAgICAgfQogICAgICAgIH0KICAgICAgICBwZXJzaXN0KCkKICAgICAgICByZXR1cm4gdHJ1ZQogICAgfQoKICAgIGZ1bmMgcmVtb3ZlRm9sZGVyKGlkOiBVVUlEKSB7CiAgICAgICAgZm9sZGVycy5yZW1vdmVBbGwgeyAkMC5pZCA9PSBpZCB9CiAgICAgICAgaWYgYWN0aXZlRm9sZGVySUQgPT0gaWQgewogICAgICAgICAgICBhY3RpdmVGb2xkZXJJRCA9IGZvbGRlcnMuZmlyc3Q/LmlkCiAgICAgICAgICAgIGlmIGxldCBuZXh0ID0gYWN0aXZlRm9sZGVySUQgewogICAgICAgICAgICAgICAgXyA9IGFjdGl2YXRlKGlkOiBuZXh0KQogICAgICAgICAgICB9IGVsc2UgewogICAgICAgICAgICAgICAgYWN0aXZlVVJMID0gbmlsCiAgICAgICAgICAgIH0KICAgICAgICB9CiAgICAgICAgcGVyc2lzdCgpCiAgICB9CgogICAgLy8gTUFSSzogLSDmiavmj48KCiAgICAvLy8g5omr5o+P5b2T5YmN5r+A5rS75paH5Lu25aS55YaF55qE5Y+v5pKt5pS+6KeG6aKR77yIbXA0L21vdi9tNHbvvInvvIzlhpnlhaUgc3RvcmXjgIIKICAgIGZ1bmMgc2NhbihpbnRvIHN0b3JlOiBMaWJyYXJ5U3RvcmUpIHsKICAgICAgICBndWFyZCBsZXQgZm9sZGVyID0gYWN0aXZlVVJMIGVsc2UgeyByZXR1cm4gfQoKICAgICAgICBsZXQga2V5czogW1VSTFJlc291cmNlS2V5XSA9IFsuZmlsZVJlc291cmNlSWRlbnRpZmllcktleSwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAuY29udGVudE1vZGlmaWNhdGlvbkRhdGVLZXksCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgLmZpbGVTaXplS2V5LAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC5pc1JlZ3VsYXJGaWxlS2V5XQogICAgICAgIGxldCB1cmxzID0gKHRyeT8gRmlsZU1hbmFnZXIuZGVmYXVsdC5jb250ZW50c09mRGlyZWN0b3J5KAogICAgICAgICAgICBhdDogZm9sZGVyLAogICAgICAgICAgICBpbmNsdWRpbmdQcm9wZXJ0aWVzRm9yS2V5czoga2V5cywKICAgICAgICAgICAgb3B0aW9uczogWy5za2lwc0hpZGRlbkZpbGVzXSkpID8/IFtdCgogICAgICAgIHZhciBpdGVtczogW1ZpZGVvSXRlbV0gPSBbXQogICAgICAgIHZhciBzZWVuID0gU2V0PFN0cmluZz4oKQogICAgICAgIGZvciB1cmwgaW4gdXJscyB3aGVyZSBWaWRlb0l0ZW0uaXNQbGF5YWJsZSh1cmwpIHsKICAgICAgICAgICAgZ3VhcmQgbGV0IHZhbHVlcyA9IHRyeT8gdXJsLnJlc291cmNlVmFsdWVzKGZvcktleXM6IFNldChrZXlzKSksCiAgICAgICAgICAgICAgICAgIHZhbHVlcy5pc1JlZ3VsYXJGaWxlID09IHRydWUgZWxzZSB7IGNvbnRpbnVlIH0KICAgICAgICAgICAgbGV0IHN0YWJsZSA9IHZhbHVlcy5maWxlUmVzb3VyY2VJZGVudGlmaWVyPy5pZCA/PyB1cmwucGF0aAogICAgICAgICAgICBndWFyZCAhc2Vlbi5jb250YWlucyhzdGFibGUpIGVsc2UgeyBjb250aW51ZSB9CiAgICAgICAgICAgIHNlZW4uaW5zZXJ0KHN0YWJsZSkKICAgICAgICAgICAgaXRlbXMuYXBwZW5kKFZpZGVvSXRlbSh1cmw6IHVybCwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBzdGFibGVJRDogc3RhYmxlLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRpdGxlOiB1cmwuZGVsZXRpbmdQYXRoRXh0ZW5zaW9uKCkubGFzdFBhdGhDb21wb25lbnQsCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgbW9kRGF0ZTogdmFsdWVzLmNvbnRlbnRNb2RpZmljYXRpb25EYXRlID8/IC5kaXN0YW50UGFzdCwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBmaWxlU2l6ZTogSW50NjQodmFsdWVzLmZpbGVTaXplID8/IDApKSkKICAgICAgICB9CgogICAgICAgIHN0b3JlLnZpZGVvcyA9IGl0ZW1zCiAgICB9Cn0K
+import SwiftUI
+
+/// 一个被记住的文件夹。iOS 上书签不需要 macOS 的 security scope，
+/// 但用户通过文档选取器授权的文件夹，其访问权会随书签跨启动保留。
+struct FolderEntry: Identifiable, Codable, Hashable {
+    let id: UUID
+    var name: String
+    var bookmark: Data
+}
+
+/// 管理多个文件夹书签：添加、切换、移除、扫描当前激活的文件夹。
+final class LibraryManager: ObservableObject {
+    @Published var folders: [FolderEntry] = []
+    @Published var activeFolderID: UUID?
+    @Published var lastError: String?
+
+    private(set) var activeURL: URL?
+
+    private let foldersKey = "folderEntries"
+    private let activeKey = "activeFolderID"
+
+    var activeFolderName: String? {
+        folders.first { $0.id == activeFolderID }?.name
+    }
+
+    // MARK: - 持久化
+
+    func load() {
+        if let data = UserDefaults.standard.data(forKey: foldersKey),
+           let list = try? JSONDecoder().decode([FolderEntry].self, from: data) {
+            folders = list
+        }
+        if let raw = UserDefaults.standard.string(forKey: activeKey),
+           let id = UUID(uuidString: raw),
+           folders.contains(where: { $0.id == id }) {
+            _ = activate(id: id)
+        }
+    }
+
+    private func persist() {
+        if let data = try? JSONEncoder().encode(folders) {
+            UserDefaults.standard.set(data, forKey: foldersKey)
+        }
+        UserDefaults.standard.set(activeFolderID?.uuidString, forKey: activeKey)
+    }
+
+    // MARK: - 文件夹管理
+
+    func addFolder(url: URL) {
+        do {
+            let bookmark = try url.bookmarkData(options: [],
+                                                includingResourceValuesForKeys: nil,
+                                                relativeTo: nil)
+            let entry = FolderEntry(id: UUID(), name: url.lastPathComponent, bookmark: bookmark)
+            folders.append(entry)
+            persist()
+            _ = activate(id: entry.id)
+        } catch {
+            lastError = "无法记住文件夹：\(error.localizedDescription)"
+        }
+    }
+
+    @discardableResult
+    func activate(id: UUID) -> Bool {
+        guard let entry = folders.first(where: { $0.id == id }) else { return false }
+        var stale = false
+        guard let url = try? URL(resolvingBookmarkData: entry.bookmark,
+                                 options: [],
+                                 relativeTo: nil,
+                                 bookmarkDataIsStale: &stale) else {
+            lastError = "无法打开文件夹：\(entry.name)"
+            return false
+        }
+        activeURL = url
+        activeFolderID = id
+        if stale,
+           let fresh = try? url.bookmarkData(options: [],
+                                             includingResourceValuesForKeys: nil,
+                                             relativeTo: nil) {
+            if let i = folders.firstIndex(where: { $0.id == id }) {
+                folders[i].bookmark = fresh
+            }
+        }
+        persist()
+        return true
+    }
+
+    func removeFolder(id: UUID) {
+        folders.removeAll { $0.id == id }
+        if activeFolderID == id {
+            activeFolderID = folders.first?.id
+            if let next = activeFolderID {
+                _ = activate(id: next)
+            } else {
+                activeURL = nil
+            }
+        }
+        persist()
+    }
+
+    // MARK: - 扫描
+
+    /// 扫描当前激活文件夹内的可播放视频（mp4/mov/m4v），写入 store。
+    func scan(into store: LibraryStore) {
+        guard let folder = activeURL else { return }
+
+        let keys: [URLResourceKey] = [.fileResourceIdentifierKey,
+                                      .contentModificationDateKey,
+                                      .fileSizeKey,
+                                      .isRegularFileKey]
+        let urls = (try? FileManager.default.contentsOfDirectory(
+            at: folder,
+            includingPropertiesForKeys: keys,
+            options: [.skipsHiddenFiles])) ?? []
+
+        var items: [VideoItem] = []
+        var seen = Set<String>()
+        for url in urls where VideoItem.isPlayable(url) {
+            guard let values = try? url.resourceValues(forKeys: Set(keys)),
+                  values.isRegularFile == true else { continue }
+            let stable = values.fileResourceIdentifier?.id ?? url.path
+            guard !seen.contains(stable) else { continue }
+            seen.insert(stable)
+            items.append(VideoItem(url: url,
+                                   stableID: stable,
+                                   title: url.deletingPathExtension().lastPathComponent,
+                                   modDate: values.contentModificationDate ?? .distantPast,
+                                   fileSize: Int64(values.fileSize ?? 0)))
+        }
+
+        store.videos = items
+    }
+}
