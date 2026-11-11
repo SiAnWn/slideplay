@@ -18,7 +18,11 @@ struct RootView: View {
             Color.black.ignoresSafeArea()
 
             if store.videos.isEmpty {
-                WelcomeView(onPick: { showPicker = true })
+                if manager.activeFolderName != nil {
+                    emptyFolderView
+                } else {
+                    WelcomeView(onPick: { showPicker = true })
+                }
             } else {
                 PagerView()
             }
@@ -84,6 +88,41 @@ struct RootView: View {
         } message: {
             Text(pickError ?? "")
         }
+    }
+
+    // MARK: - 已选文件夹但没有可识别视频
+
+    private var emptyFolderView: some View {
+        VStack(spacing: 14) {
+            Image(systemName: "tray.and.arrow.down")
+                .font(.system(size: 46))
+                .foregroundStyle(.white.opacity(0.7))
+            Text("「\(manager.activeFolderName ?? "")」里没有可识别的视频")
+                .font(.headline)
+                .multilineTextAlignment(.center)
+                .foregroundStyle(.white)
+                .padding(.horizontal, 24)
+            Text("支持 MP4 / MOV / M4V。若视频在子文件夹里，请改选那个子文件夹。")
+                .font(.subheadline)
+                .multilineTextAlignment(.center)
+                .foregroundStyle(.white.opacity(0.6))
+                .padding(.horizontal, 30)
+            Button("重新选择文件夹") { showPicker = true }
+                .font(.headline)
+                .padding(.horizontal, 24)
+                .padding(.vertical, 13)
+                .background(Theme.gradient, in: Capsule())
+                .foregroundStyle(.white)
+                .padding(.top, 8)
+            Button("移除该文件夹") {
+                if let id = manager.activeFolderID { manager.removeFolder(id: id) }
+                store.videos = []
+            }
+            .font(.footnote)
+            .foregroundStyle(.white.opacity(0.5))
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.black)
     }
 
     // MARK: - 隐私锁遮罩

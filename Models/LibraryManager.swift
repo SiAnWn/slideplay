@@ -1,8 +1,7 @@
 import SwiftUI
 import UniformTypeIdentifiers
 
-/// 一个被记住的文件夹。iOS 上书签不需要 macOS 的 security scope，
-/// 但用户通过文档选取器授权的文件夹，其访问权会随书签跨启动保留。
+/// 一个被记住的文件夹。
 struct FolderEntry: Identifiable, Codable, Hashable {
     let id: UUID
     var name: String
@@ -10,6 +9,7 @@ struct FolderEntry: Identifiable, Codable, Hashable {
 }
 
 /// 管理多个文件夹书签：添加、切换、移除、扫描当前激活的文件夹。
+/// 注意：读取选取器授权的文件夹前，必须调用 startAccessingSecurityScopedResource()。
 final class LibraryManager: ObservableObject {
     @Published var folders: [FolderEntry] = []
     @Published var activeFolderID: UUID?
@@ -48,16 +48,21 @@ final class LibraryManager: ObservableObject {
     // MARK: - 文件夹管理
 
     func addFolder(url: URL) {
+        // 激活选取器授予的访问权
+        let granted = url.startAccessingSecurityScopedResource()
         do {
             let bookmark = try url.bookmarkData(options: [],
                                                 includingResourceValuesForKeys: nil,
                                                 relativeTo: nil)
             let entry = FolderEntry(id: UUID(), name: url.lastPathComponent, bookmark: bookmark)
             folders.append(entry)
+            activeURL = url
+            activeFolderID = entry.id
             persist()
-            _ = activate(id: entry.id)
+            if !granted { lastError = "没有该文件夹的访问权限" }
         } catch {
             lastError = "无法记住文件夹：\(error.localizedDescription)"
+            if granted { url.stopAccessingSecurityScopedResource() }
         }
     }
 
@@ -102,10 +107,11 @@ final class LibraryManager: ObservableObject {
     // MARK: - 扫描
 
     /// 扫描当前激活文件夹内的可播放视频。
-    /// 判定方式：优先读文件的真实内容类型（UTType，无扩展名的微信视频也能识别），
-    /// 其次按扩展名兜底。
+    /// 先获取安全访问权；判定可播放优先用文件真实内容类型（UTType），扩展名兜底。
     func scan(into store: LibraryStore) {
         guard let folder = activeURL else { return }
+        let started = folder.startAccessingSecurityScopedResource()
+        defer { if started { folder.stopAccessingSecurityScopedResource() } }
 
         let keys: [URLResourceKey] = [.contentModificationDateKey,
                                       .fileSizeKey,
