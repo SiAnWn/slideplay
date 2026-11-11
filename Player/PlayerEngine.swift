@@ -46,7 +46,7 @@ final class PlayerEngine: ObservableObject {
     @Published var isPlaying: Bool = false
     @Published var rate: Float = 1.0
     @Published var tempRate: Float? = nil
-    @Published var aspect: AspectMode = .fit
+    @Published var aspect: AspectMode = .stretch
     @Published var loopMode: LoopMode = .off
     @Published var autoAdvance: Bool = true
     @Published var seeking: SeekInfo? = nil
