@@ -30,11 +30,6 @@ struct RootView: View {
                     .ignoresSafeArea()
             }
         }
-        .overlay(alignment: .topLeading) {
-            if !store.videos.isEmpty && !engine.drawerOpen && !privacy.isLocked {
-                menuButton
-            }
-        }
         .overlay {
             hudOverlay
         }
@@ -106,22 +101,6 @@ struct RootView: View {
         } message: {
             Text(pickError ?? "")
         }
-    }
-
-    // MARK: - 左上角菜单按钮（保底入口；也可长按屏幕打开）
-
-    private var menuButton: some View {
-        Button {
-            engine.drawerOpen = true
-        } label: {
-            Image(systemName: "line.3.horizontal")
-                .font(.system(size: 16, weight: .semibold))
-                .foregroundStyle(.white.opacity(0.6))
-                .frame(width: 38, height: 38)
-                .background(.black.opacity(0.28), in: Circle())
-        }
-        .padding(.leading, 14)
-        .padding(.top, 6)
     }
 
     // MARK: - HUD（亮度/音量/倍速/跳转的临时提示）
