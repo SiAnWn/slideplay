@@ -1,4 +1,5 @@
 import SwiftUI
+import UniformTypeIdentifiers
 
 /// 一个被记住的文件夹。iOS 上书签不需要 macOS 的 security scope，
 /// 但用户通过文档选取器授权的文件夹，其访问权会随书签跨启动保留。
@@ -100,14 +101,16 @@ final class LibraryManager: ObservableObject {
 
     // MARK: - 扫描
 
-    /// 扫描当前激活文件夹内的可播放视频（mp4/mov/m4v），写入 store。
+    /// 扫描当前激活文件夹内的可播放视频。
+    /// 判定方式：优先读文件的真实内容类型（UTType，无扩展名的微信视频也能识别），
+    /// 其次按扩展名兜底。
     func scan(into store: LibraryStore) {
         guard let folder = activeURL else { return }
 
-        let keys: [URLResourceKey] = [.fileResourceIdentifierKey,
-                                      .contentModificationDateKey,
+        let keys: [URLResourceKey] = [.contentModificationDateKey,
                                       .fileSizeKey,
-                                      .isRegularFileKey]
+                                      .isRegularFileKey,
+                                      .contentTypeKey]
         let urls = (try? FileManager.default.contentsOfDirectory(
             at: folder,
             includingPropertiesForKeys: keys,
@@ -115,9 +118,15 @@ final class LibraryManager: ObservableObject {
 
         var items: [VideoItem] = []
         var seen = Set<String>()
-        for url in urls where VideoItem.isPlayable(url) {
+        for url in urls {
             guard let values = try? url.resourceValues(forKeys: Set(keys)),
                   values.isRegularFile == true else { continue }
+
+            let byType = values.contentType.map {
+                $0.conforms(to: .movie) || $0.conforms(to: .video)
+            } ?? false
+            guard byType || VideoItem.isPlayable(url) else { continue }
+
             let stable = url.path
             guard !seen.contains(stable) else { continue }
             seen.insert(stable)
