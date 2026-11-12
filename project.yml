@@ -21,6 +21,11 @@ targets:
       - Views
       - path: Support
         excludes: ["Info.plist"]
+    entitlements:
+      path: Generated/SlidePlay.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.0c4608c7ade308d7.1
     info:
       path: Support/Info.plist
       properties:

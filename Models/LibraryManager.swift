@@ -122,51 +122,70 @@ final class LibraryManager: ObservableObject {
 
     // MARK: - 扫描
 
-    /// 扫描 App 自己的 Documents 目录（主路径）。
-    func scanDocuments(into store: LibraryStore) {
-        scanFolder(documentsURL, into: store)
+    private let sharedGroupID = "group.0c4608c7ade308d7.1"
+
+    /// 共享 App Group 容器（签名 profile 已启用该组时非 nil）。
+    var sharedContainerURL: URL? {
+        FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: sharedGroupID)
     }
 
-    /// 扫描当前激活的外部文件夹（需先获取安全访问权）。
+    /// 扫描 App 自己的 Documents + 共享容器（合并、去重）。
+    func scanDocuments(into store: LibraryStore) {
+        var dirs = [documentsURL]
+        if let gc = sharedContainerURL { dirs.append(gc) }
+        store.videos = merged(collect(from: dirs))
+    }
+
+    /// 扫描当前激活的外部文件夹 + 共享容器（合并、去重）。
     func scan(into store: LibraryStore) {
         guard let folder = activeURL else { return }
         let started = folder.startAccessingSecurityScopedResource()
-        defer { if started { folder.stopAccessingSecurityScopedResource() } }
-        scanFolder(folder, into: store)
+        var dirs = [folder]
+        if let gc = sharedContainerURL { dirs.append(gc) }
+        let items = merged(collect(from: dirs))
+        if started { folder.stopAccessingSecurityScopedResource() }
+        store.videos = items
     }
 
-    /// 共用扫描逻辑：可播放判定优先用文件真实内容类型（UTType），扩展名兜底。
-    private func scanFolder(_ folder: URL, into store: LibraryStore) {
+    /// 逐目录收集可播放文件：可播放判定优先用真实内容类型（UTType），扩展名兜底。
+    private func collect(from dirs: [URL]) -> [[VideoItem]] {
         let keys: [URLResourceKey] = [.contentModificationDateKey,
                                       .fileSizeKey,
                                       .isRegularFileKey,
                                       .contentTypeKey]
-        let urls = (try? FileManager.default.contentsOfDirectory(
-            at: folder,
-            includingPropertiesForKeys: keys,
-            options: [.skipsHiddenFiles])) ?? []
-
-        var items: [VideoItem] = []
-        var seen = Set<String>()
-        for url in urls {
-            guard let values = try? url.resourceValues(forKeys: Set(keys)),
-                  values.isRegularFile == true else { continue }
-
-            let byType = values.contentType.map {
-                $0.conforms(to: .movie) || $0.conforms(to: .video)
-            } ?? false
-            guard byType || VideoItem.isPlayable(url) else { continue }
-
-            let stable = url.path
-            guard !seen.contains(stable) else { continue }
-            seen.insert(stable)
-            items.append(VideoItem(url: url,
-                                   stableID: stable,
-                                   title: url.deletingPathExtension().lastPathComponent,
-                                   modDate: values.contentModificationDate ?? .distantPast,
-                                   fileSize: Int64(values.fileSize ?? 0)))
+        return dirs.map { folder in
+            let urls = (try? FileManager.default.contentsOfDirectory(
+                at: folder,
+                includingPropertiesForKeys: keys,
+                options: [.skipsHiddenFiles])) ?? []
+            var items: [VideoItem] = []
+            for url in urls {
+                guard let values = try? url.resourceValues(forKeys: Set(keys)),
+                      values.isRegularFile == true else { continue }
+                let byType = values.contentType.map {
+                    $0.conforms(to: .movie) || $0.conforms(to: .video)
+                } ?? false
+                guard byType || VideoItem.isPlayable(url) else { continue }
+                items.append(VideoItem(url: url,
+                                       stableID: url.path,
+                                       title: url.deletingPathExtension().lastPathComponent,
+                                       modDate: values.contentModificationDate ?? .distantPast,
+                                       fileSize: Int64(values.fileSize ?? 0)))
+            }
+            return items
         }
+    }
 
-        store.videos = items
+    /// 合并多个目录结果并按 stableID 去重。
+    private func merged(_ groups: [[VideoItem]]) -> [VideoItem] {
+        var out: [VideoItem] = []
+        var seen = Set<String>()
+        for group in groups {
+            for it in group where !seen.contains(it.stableID) {
+                seen.insert(it.stableID)
+                out.append(it)
+            }
+        }
+        return out
     }
 }
